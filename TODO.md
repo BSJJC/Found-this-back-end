@@ -1,0 +1,1 @@
+- transition enter animation doesn't work, fuck
