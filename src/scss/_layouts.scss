@@ -1,0 +1,24 @@
+.flex-base {
+  @apply flex justify-center items-center;
+}
+
+.flex-col-center {
+  @apply flex flex-col justify-center items-center;
+}
+
+.flex-row-center {
+  @apply flex flex-row justify-center items-center;
+}
+
+
+.box-with-shadow {
+  box-sizing: border-box;
+  border-radius: 10px;
+  box-shadow: rgba(158, 158, 158, 0.32) 0px 2px 4px 0px,
+    rgba(158, 158, 158, 0.32) 0px 2px 16px 0px;
+}
+
+.box-without-shadow {
+  box-sizing: border-box;
+  border-radius: 10px;
+}
