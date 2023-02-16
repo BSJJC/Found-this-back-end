@@ -52,19 +52,20 @@ const rules = reactive<FormRules>({
 const submitForm = async (formEl: FormInstance | undefined): Promise<void> => {
   if (!formEl) return;
   await formEl.validate((valid, fields) => {
+    ///    Login success
     if (valid) {
       ElMessage({
         message: "Login successful",
         type: "success",
       });
       console.log("submit!");
-
       setTimeout(() => {
         router.push({
           name: "theTest",
         });
       }, 500);
     } else {
+      ///    Login failed
       ElMessage({
         message: "opps,  seems to be an error logging in",
         type: "error",
