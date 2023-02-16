@@ -1,0 +1,19 @@
+.fade-enter {
+  opacity: 1;
+}
+.fade-enter-to {
+  opacity: 1;
+}
+.fade-enter-active {
+  transition: 0.5s; /* MISSING RULE */
+}
+
+.fade-leave {
+  opacity: 0;
+}
+.fade-leave-to {
+  opacity: 0;
+}
+.fade-leave-active {
+  transition: 0.5s; /* MISSING RULE */
+}

@@ -1,0 +1,12 @@
+@charset "UTF-8";
+:root {
+  --font-color-primary: #4f97f3;
+  --btn-color-primary: #4f97f3;
+}
+
+* {
+  margin: 0;
+  padding: 100;
+  font-family: "得意黑";
+  overflow: hidden;
+}
