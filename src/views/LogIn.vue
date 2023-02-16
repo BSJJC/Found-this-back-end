@@ -121,7 +121,6 @@ const submitForm = async (formEl: FormInstance | undefined): Promise<void> => {
           登录
         </el-button>
       </el-form-item>
-      <routerLink to="/homePage">homePage</routerLink>
     </el-form>
   </div>
 </template>
