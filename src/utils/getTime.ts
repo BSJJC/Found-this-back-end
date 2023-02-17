@@ -1,27 +1,15 @@
 import type timeType from "@/types/timeType";
 
-function addPrefix(str: string | number): string | number {
-  if (str >= 0 && str <= 9) {
-    str = "0" + str;
-  }
-  return str;
-};
-
 function getTime(timestamp: string): timeType {
   const now: Date = new Date(parseFloat(timestamp));
 
-  const year: string | number = now.getFullYear();
-  let month: string | number = now.getMonth() + 1;
-  let date: string | number = now.getDate();
-  addPrefix(month);
-  addPrefix(date);
+  const year: number = now.getFullYear();
+  const month: number = now.getMonth() + 1;
+  const date: number = now.getDate();
 
-  let hour: string | number = now.getHours();
-  let minute: string | number = now.getMinutes();
-  let second: string | number = now.getSeconds();
-  addPrefix(hour);
-  addPrefix(minute);
-  addPrefix(second);
+  const hour: number = now.getHours();
+  const minute: number = now.getMinutes();
+  const second: number = now.getSeconds();
 
   const dayList: string[] = [
     "星期日",

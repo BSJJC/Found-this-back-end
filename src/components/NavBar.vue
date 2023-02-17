@@ -3,6 +3,7 @@ import getTime from "@/utils/getTime";
 
 const timeNow = new Date().getTime().toString();
 const { year, month, date, hour, minute, second, day } = getTime(timeNow);
+console.log(getTime(timeNow));
 </script>
 
 <template>
@@ -13,8 +14,15 @@ const { year, month, date, hour, minute, second, day } = getTime(timeNow);
         <p class="flex justify-center items-start">在线服务平台</p>
       </div>
 
-      <div class="">
-        {{ year }}
+      <div class="flex flex-row">
+        <div class="flex flex-row">
+          <div class="min-w-[35px]">{{ year }}</div>
+          <div>年</div>
+          <div class="min-w-[35px]">{{ month }}</div>
+          <div>月</div>
+          <div class="min-w-[35px]">{{ date }}</div>
+          <div>日</div>
+        </div>
       </div>
     </div>
   </div>
