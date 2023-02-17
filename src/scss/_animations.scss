@@ -1,6 +1,6 @@
 .fade-enter-active {
   transition: all 0.3s ease-in-out;
-  transition-delay: 0.4s;
+  transition-delay: 0.5s;
 }
 
 .fade-leave-active {
@@ -8,7 +8,7 @@
 }
 
 .fade-enter-from {
-  transform: translateX(-20px);
+  transform: translateX(20px);
   opacity: 0;
 }
 
