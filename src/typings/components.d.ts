@@ -22,6 +22,7 @@ declare module '@vue/runtime-core' {
     IEpSwitchButton: typeof import('~icons/ep/switch-button')['default']
     NavBar: typeof import('./../components/NavBar.vue')['default']
     OverView: typeof import('./../components/OverView.vue')['default']
+    Ppp: typeof import('./../components/ppp.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SideBar: typeof import('./../components/SideBar.vue')['default']

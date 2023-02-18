@@ -1,7 +1,10 @@
 <script lang="ts" setup>
-import OverView from "@/components/OverView.vue";
 import SideBar from "@/components/SideBar.vue";
 import NavBar from "@/components/NavBar.vue";
+
+import OverView from "@/components/OverView.vue";
+
+let showingModule = shallowRef(OverView);
 </script>
 
 <template>
@@ -15,7 +18,11 @@ import NavBar from "@/components/NavBar.vue";
           <nav-bar></nav-bar>
         </el-header>
         <el-main>
-          <over-view></over-view>
+          <router-view>
+            <transition name="fade">
+              <Component :is="showingModule"></Component>
+            </transition>
+          </router-view>
         </el-main>
       </el-container>
     </el-container>

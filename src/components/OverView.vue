@@ -1,7 +1,7 @@
 <script lang="ts" setup></script>
 
 <template>
-  <div class="bg-green-300 h-full w-full"></div>
+  <div class="bg-green-300 h-full w-full">over view</div>
 </template>
 
 <style lang="scss">

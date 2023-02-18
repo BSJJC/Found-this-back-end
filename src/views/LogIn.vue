@@ -56,7 +56,7 @@ const submitForm = async (formEl: FormInstance | undefined): Promise<void> => {
       console.log("submit!");
       setTimeout(() => {
         router.push({
-          name: "HomePage",
+          name: "Home",
         });
       }, 500);
     } else {
