@@ -1,9 +1,30 @@
 <script lang="ts" setup>
+import { reactive } from "vue";
 import getTime from "@/utils/getTime";
+import addPrefix from "@/utils/addPrefix";
+import copyObjectProp from "@/utils/copyObjectProp";
+import type timeType from "@/types/timeType";
 
-const timeNow = new Date().getTime().toString();
-const { year, month, date, hour, minute, second, day } = getTime(timeNow);
-console.log(getTime(timeNow));
+const initTimestamp: string = new Date().getTime().toString();
+const initTimeData: timeType = getTime(initTimestamp);
+
+let timeData = reactive<timeType>({
+  year: "",
+  month: "",
+  date: "",
+  hour: "",
+  minute: "",
+  second: "",
+  day: "",
+});
+
+copyObjectProp(timeData, initTimeData);
+
+setInterval(() => {
+  const timestampNow: string = new Date().getTime().toString();
+  const newTimeData: timeType = getTime(timestampNow);
+  copyObjectProp(timeData, newTimeData);
+}, 1000);
 </script>
 
 <template>
@@ -16,12 +37,30 @@ console.log(getTime(timeNow));
 
       <div class="flex flex-row">
         <div class="flex flex-row">
-          <div class="min-w-[35px]">{{ year }}</div>
+          <div class="variable-element">{{ timeData.year }}</div>
           <div>年</div>
-          <div class="min-w-[35px]">{{ month }}</div>
+          <div class="variable-element">
+            {{ addPrefix(timeData.month) }}
+          </div>
           <div>月</div>
-          <div class="min-w-[35px]">{{ date }}</div>
+          <div class="variable-element">
+            {{ addPrefix(timeData.date) }}
+          </div>
           <div>日</div>
+          <div class="mx-2">
+            {{ timeData.day }}
+          </div>
+          <div class="variable-element">
+            {{ timeData.hour }}
+          </div>
+          :
+          <div class="variable-element">
+            {{ timeData.minute }}
+          </div>
+          :
+          <div class="variable-element">
+            {{ timeData.second }}
+          </div>
         </div>
       </div>
     </div>
@@ -31,5 +70,9 @@ console.log(getTime(timeNow));
 <style lang="scss">
 .el-header {
   padding-right: 0px !important;
+}
+
+.variable-element {
+  @apply min-w-[20px] text-center;
 }
 </style>
