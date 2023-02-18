@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import { reactive } from "vue";
 import getTime from "@/utils/getTime";
 import addPrefix from "@/utils/addPrefix";
 import copyObjectProp from "@/utils/copyObjectProp";
 import type timeType from "@/types/timeType";
 
+///    init time
 const initTimestamp: string = new Date().getTime().toString();
 const initTimeData: timeType = getTime(initTimestamp);
 
@@ -17,14 +17,14 @@ let timeData = reactive<timeType>({
   second: "",
   day: "",
 });
-
 copyObjectProp(timeData, initTimeData);
 
-setInterval(() => {
-  const timestampNow: string = new Date().getTime().toString();
-  const newTimeData: timeType = getTime(timestampNow);
-  copyObjectProp(timeData, newTimeData);
-}, 1000);
+///    update time per sec
+// setInterval(() => {
+//   const timestampNow: string = new Date().getTime().toString();
+//   const newTimeData: timeType = getTime(timestampNow);
+//   copyObjectProp(timeData, newTimeData);
+// }, 1000);
 </script>
 
 <template>
@@ -35,8 +35,8 @@ setInterval(() => {
         <p class="flex justify-center items-start">在线服务平台</p>
       </div>
 
-      <div class="flex flex-row">
-        <div class="flex flex-row">
+      <div class="flex h-full">
+        <div class="flex justify-center items-center h-full">
           <div class="variable-element">{{ timeData.year }}</div>
           <div>年</div>
           <div class="variable-element">
@@ -48,19 +48,23 @@ setInterval(() => {
           </div>
           <div>日</div>
           <div class="mx-2">
-            {{ timeData.day }}
+            {{ addPrefix(timeData.day) }}
           </div>
           <div class="variable-element">
-            {{ timeData.hour }}
+            {{ addPrefix(timeData.hour) }}
           </div>
           :
           <div class="variable-element">
-            {{ timeData.minute }}
+            {{ addPrefix(timeData.minute) }}
           </div>
           :
           <div class="variable-element">
-            {{ timeData.second }}
+            {{ addPrefix(timeData.second) }}
           </div>
+        </div>
+
+        <div class="ml-4 flex items-center cursor-pointer">
+          <i-ep-SwitchButton />
         </div>
       </div>
     </div>
