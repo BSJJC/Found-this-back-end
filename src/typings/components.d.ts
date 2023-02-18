@@ -17,10 +17,13 @@ declare module '@vue/runtime-core' {
     ElInput: typeof import('element-plus/es')['ElInput']
     ElMain: typeof import('element-plus/es')['ElMain']
     IEpSwitchButton: typeof import('~icons/ep/switch-button')['default']
+    IEpUser: typeof import('~icons/ep/user')['default']
     NavBar: typeof import('./../components/NavBar.vue')['default']
     OverView: typeof import('./../components/OverView.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SideBar: typeof import('./../components/SideBar.vue')['default']
+    SiteSituation: typeof import('./../components/SiteSituation.vue')['default']
+    VisualData: typeof import('./../components/VisualData.vue')['default']
   }
 }
