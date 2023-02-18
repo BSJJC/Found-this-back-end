@@ -20,22 +20,23 @@ let timeData = reactive<timeType>({
 copyObjectProp(timeData, initTimeData);
 
 ///    update time per sec
-// setInterval(() => {
-//   const timestampNow: string = new Date().getTime().toString();
-//   const newTimeData: timeType = getTime(timestampNow);
-//   copyObjectProp(timeData, newTimeData);
-// }, 1000);
+setInterval(() => {
+  const timestampNow: string = new Date().getTime().toString();
+  const newTimeData: timeType = getTime(timestampNow);
+  copyObjectProp(timeData, newTimeData);
+}, 1000);
 </script>
 
 <template>
-  <div class="bg-red-300 w-full h-full rounded-b-2xl">
-    <div class="mx-[15px] h-full flex justify-between items-center">
-      <div class="h-full grid cursor-default select-none">
+  <div class="w-full h-full rounded-b-2xl box-with-shadow">
+    <div class="mx-[20px] h-full flex justify-between items-center select-none">
+      <div class="h-full grid cursor-default">
         <p class="flex justify-center items-end">互联网+</p>
         <p class="flex justify-center items-start">在线服务平台</p>
       </div>
 
       <div class="flex h-full">
+        <!-- time bar -->
         <div class="flex justify-center items-center h-full">
           <div class="variable-element">{{ timeData.year }}</div>
           <div>年</div>
@@ -63,6 +64,7 @@ copyObjectProp(timeData, initTimeData);
           </div>
         </div>
 
+        <!-- log out button -->
         <div class="ml-4 flex items-center cursor-pointer">
           <i-ep-SwitchButton />
         </div>
@@ -73,7 +75,9 @@ copyObjectProp(timeData, initTimeData);
 
 <style lang="scss">
 .el-header {
+  height: 80px !important;
   padding-right: 0px !important;
+  padding-bottom: 15px !important;
 }
 
 .variable-element {

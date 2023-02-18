@@ -6,6 +6,6 @@
 
 <style lang="scss">
 .el-main {
-  padding: 15px 15px 15px 20px !important;
+  padding: 0px 15px 15px 20px !important;
 }
 </style>

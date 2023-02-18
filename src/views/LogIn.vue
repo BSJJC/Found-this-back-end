@@ -77,7 +77,7 @@ const submitForm = async (formEl: FormInstance | undefined): Promise<void> => {
       ref="ruleFormRef"
       :rules="rules"
       :model="logInInfo"
-      class="flex-col-center w-4/12 px-3 py-10 bg-white box-with-shadow"
+      class="flex-col-center w-4/12 px-3 py-10 bg-white box-with-shadow rounded-lg"
     >
       <!-- title -->
       <el-form-item class="w-full">
