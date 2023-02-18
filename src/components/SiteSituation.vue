@@ -1,4 +1,10 @@
 <script lang="ts" setup>
+import axios from "axios";
+
+axios.get("/mockApi/get/news").then((res) => {
+  console.log(res.data);
+});
+
 const props = defineProps({
   dataArr: {
     type: Array,
@@ -7,8 +13,6 @@ const props = defineProps({
     },
   },
 });
-
-console.log(props.dataArr);
 </script>
 
 <template>
