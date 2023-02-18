@@ -4,9 +4,11 @@ module.exports = {
     './public/**/*.html',
     './src/**/*.{js,jsx,ts,tsx,vue}',
   ],
-  theme: {},
-  variants: {
-    extend: {},
+  theme: {
+    spacing: {
+      "70": "70%",
+      "95": "95%"
+    }
   },
   plugins: [],
 }

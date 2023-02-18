@@ -10,7 +10,7 @@ let showingModule = shallowRef(OverView);
 <template>
   <div class="flex-base">
     <el-container>
-      <el-aside width="150px">
+      <el-aside width="200px">
         <side-bar></side-bar>
       </el-aside>
       <el-container>
