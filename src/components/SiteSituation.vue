@@ -1,31 +1,25 @@
 <script lang="ts" setup>
-import axios from "axios";
+import getSiteSituation from "@/api/getSiteSituation";
+import type siteSituationType from "@/types/siteSituationType";
 
-axios.get("/mockApi/get/news").then((res) => {
-  console.log(res.data);
-});
+let data = ref<Array<string>>();
 
-const props = defineProps({
-  dataArr: {
-    type: Array,
-    default() {
-      return [];
-    },
-  },
-});
+data.value?.push("123");
+
+console.log(data.value);
 </script>
 
 <template>
   <div class="flex flex-row flex-wrap content-around full h-full">
-    <div v-for="(i, index) in 8" :key="index" class="card">
+    <div v-for="(i, index) in data ? data : 8" :key="index" class="card">
       <div class="card-inside">
         <div class="col-span-1 flex justify-center">
-          <i-ep-user class="h-full w-2/6" />
+          <IEpUser class="h-full w-2/6" />
         </div>
         <div class="col-span-1 grid grid-rows-2">
-          <div class="flex justify-center items-end text-xl">平台人数</div>
+          <div class="flex justify-center items-end text-xl">title</div>
           <div class="flex justify-center items-start text-3xl font-bold">
-            8050
+            value
           </div>
         </div>
       </div>
@@ -39,6 +33,6 @@ const props = defineProps({
 }
 
 .card-inside {
-  @apply grid grid-cols-2 w-95  h-70 rounded-lg bg-red-100;
+  @apply grid grid-cols-2 w-11/12 h-5/6 rounded-lg bg-red-100;
 }
 </style>
