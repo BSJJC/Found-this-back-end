@@ -1,16 +1,36 @@
+<script lang="ts" setup>
+import SideBar from "@/components/SideBar.vue";
+import NavBar from "@/components/NavBar.vue";
+
+import OverView from "@/components/OverView.vue";
+
+let showingModule = shallowRef(OverView);
+</script>
+
 <template>
-  <main>
-    <h1>Home</h1>
-
-    <p>
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora,
-      molestiae!
-    </p>
-
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic doloremque,
-      soluta officia sequi, aut beatae corporis saepe enim distinctio, labore
-      rem cum praesentium ad laudantium!
-    </p>
-  </main>
+  <div class="flex-base">
+    <el-container>
+      <el-aside width="150px">
+        <side-bar></side-bar>
+      </el-aside>
+      <el-container>
+        <el-header>
+          <nav-bar></nav-bar>
+        </el-header>
+        <el-main>
+          <router-view>
+            <transition name="fade">
+              <Component :is="showingModule"></Component>
+            </transition>
+          </router-view>
+        </el-main>
+      </el-container>
+    </el-container>
+  </div>
 </template>
+
+<style lang="scss">
+.el-container {
+  height: 100vh;
+}
+</style>

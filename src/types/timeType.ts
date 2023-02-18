@@ -5,7 +5,7 @@ type timeType = {
   hour: string | number;
   minute: string | number;
   second: string | number;
-  day: String | number;
+  day: string | number;
 };
 
 export default timeType;

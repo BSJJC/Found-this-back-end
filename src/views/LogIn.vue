@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { ref, reactive } from "vue";
-import { ElMessage } from "element-plus";
 import type { FormInstance, FormRules } from "element-plus";
 import { useRouter } from "vue-router";
 import { cnPhoneCheck } from "@/utils/phoneNumCheck";
@@ -13,10 +12,6 @@ const logInInfo = reactive({
 });
 
 const ruleFormRef = ref<FormInstance>();
-const ruleForm = reactive({
-  phoneNum: "",
-  password: "",
-});
 
 const phoneNumCheck = (rule: any, value: any, callback: any) => {
   if (!value) {
@@ -61,7 +56,7 @@ const submitForm = async (formEl: FormInstance | undefined): Promise<void> => {
       console.log("submit!");
       setTimeout(() => {
         router.push({
-          name: "HomePage",
+          name: "Home",
         });
       }, 500);
     } else {
@@ -82,7 +77,7 @@ const submitForm = async (formEl: FormInstance | undefined): Promise<void> => {
       ref="ruleFormRef"
       :rules="rules"
       :model="logInInfo"
-      class="flex-col-center w-4/12 px-3 py-10 bg-white box-with-shadow"
+      class="flex-col-center w-4/12 px-3 py-10 bg-white box-with-shadow rounded-lg"
     >
       <!-- title -->
       <el-form-item class="w-full">
