@@ -2,11 +2,12 @@
 import getSiteSituation from "@/api/getSiteSituation";
 import type siteSituationType from "@/types/siteSituationType";
 
-let data = ref<Array<string>>();
+const temp: siteSituationType[] = [];
+const data: Ref<siteSituationType[]> = ref(temp);
 
-data.value?.push("123");
-
-console.log(data.value);
+getSiteSituation().then((res) => {
+  data.value = res;
+});
 </script>
 
 <template>
@@ -17,9 +18,11 @@ console.log(data.value);
           <IEpUser class="h-full w-2/6" />
         </div>
         <div class="col-span-1 grid grid-rows-2">
-          <div class="flex justify-center items-end text-xl">title</div>
+          <div class="flex justify-center items-end text-xl">
+            {{ (i as siteSituationType).title }}
+          </div>
           <div class="flex justify-center items-start text-3xl font-bold">
-            value
+            {{ (i as siteSituationType).value }}
           </div>
         </div>
       </div>
