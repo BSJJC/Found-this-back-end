@@ -3,4 +3,7 @@
   padding: 100;
   font-family: "得意黑";
   overflow: hidden;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
 }

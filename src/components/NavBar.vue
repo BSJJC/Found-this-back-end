@@ -29,43 +29,67 @@ setInterval(() => {
 
 <template>
   <div class="w-full h-full rounded-b-2xl box-with-shadow">
-    <div class="mx-[20px] h-full flex justify-between items-center select-none">
-      <div class="h-full grid cursor-default">
+    <div class="mx-[20px] h-full flex justify-between items-center">
+      <div id="title" class="h-full grid cursor-default">
         <p class="flex justify-center items-end">互联网+</p>
         <p class="flex justify-center items-start">在线服务平台</p>
       </div>
 
       <div class="flex h-full">
         <!-- time bar -->
-        <div class="flex justify-center items-center h-full">
+        <div id="title" class="flex justify-center items-center h-full">
           <div class="variable-element">{{ timeData.year }}</div>
           <div>年</div>
           <div class="variable-element">
-            {{ addPrefix(timeData.month) }}
+            {{
+              timeData.month >= 1 && timeData.month <= 9
+                ? addPrefix(timeData.month, "0")
+                : timeData.month
+            }}
           </div>
           <div>月</div>
           <div class="variable-element">
-            {{ addPrefix(timeData.date) }}
+            {{
+              timeData.date >= 1 && timeData.date <= 9
+                ? addPrefix(timeData.date, "0")
+                : timeData.date
+            }}
           </div>
           <div>日</div>
           <div class="mx-2">
-            {{ addPrefix(timeData.day) }}
+            {{
+              timeData.day >= 1 && timeData.day <= 9
+                ? addPrefix(timeData.day, "0")
+                : timeData.day
+            }}
           </div>
           <div class="variable-element">
-            {{ addPrefix(timeData.hour) }}
+            {{
+              timeData.hour >= 1 && timeData.hour <= 9
+                ? addPrefix(timeData.hour, "0")
+                : timeData.hour
+            }}
           </div>
           :
           <div class="variable-element">
-            {{ addPrefix(timeData.minute) }}
+            {{
+              timeData.minute >= 1 && timeData.minute <= 9
+                ? addPrefix(timeData.minute, "0")
+                : timeData.minute
+            }}
           </div>
           :
           <div class="variable-element">
-            {{ addPrefix(timeData.second) }}
+            {{
+              timeData.second >= 1 && timeData.second <= 9
+                ? addPrefix(timeData.second, "0")
+                : timeData.second
+            }}
           </div>
         </div>
 
         <!-- log out button -->
-        <div class="ml-4 flex items-center cursor-pointer">
+        <div id="title" class="ml-4 flex items-center cursor-pointer">
           <i-ep-SwitchButton />
         </div>
       </div>
@@ -82,5 +106,9 @@ setInterval(() => {
 
 .variable-element {
   @apply min-w-[20px] text-center;
+}
+
+#title {
+  color: var(--font-color-info);
 }
 </style>

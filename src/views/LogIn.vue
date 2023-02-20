@@ -2,6 +2,7 @@
 import { ref, reactive } from "vue";
 import type { FormInstance, FormRules } from "element-plus";
 import { useRouter } from "vue-router";
+import { ElMessage } from "element-plus";
 import { cnPhoneCheck } from "@/utils/phoneNumCheck";
 
 const router = useRouter();
@@ -81,7 +82,7 @@ const submitForm = async (formEl: FormInstance | undefined): Promise<void> => {
     >
       <!-- title -->
       <el-form-item class="w-full">
-        <h1 class="w-full font-bold text-center text-3xl select-none">
+        <h1 class="w-full font-bold text-center text-3xl">
           互联网+在线服务平台
         </h1>
       </el-form-item>

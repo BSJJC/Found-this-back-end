@@ -1,6 +1,8 @@
 /**
+ * if objA and objB have the prop, copy the value to objB to objA
  * @param objA 
  * @param objB
+ * @returns objA
 */
 function copyObjectProp(
   objA: { [x: string]: string | number; },
