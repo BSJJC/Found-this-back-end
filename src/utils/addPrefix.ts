@@ -1,8 +1,15 @@
-function addPrefix(string: string | number): string {
-  if (string >= 0 && string <= 9) {
-    string = "0" + string;
+/**
+ * add a prefix to a str
+ * @param  string that needs prefix
+ * @param  prefix
+ * @returns string with prefix
+*/
+function addPrefix(str: string | number, prefix: string): string {
+  if (typeof str !== "string") {
+    return prefix + str.toString();
   }
-  return string.toString();
+
+  return prefix + str;
 };
 
 export default addPrefix;

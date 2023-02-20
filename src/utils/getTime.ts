@@ -1,5 +1,12 @@
 import type timeType from "@/types/timeType";
 
+/**
+ * get an object that contains prop:
+ *  year, month, date, hour, minute, second, day
+ * by the timestamp in ms
+ * @param timestamp in ms
+ * @returns a data object
+*/
 function getTime(timestamp: string): timeType {
   const now: Date = new Date(parseFloat(timestamp));
 
