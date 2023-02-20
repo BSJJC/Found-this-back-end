@@ -1,6 +1,6 @@
 type siteSituationType = {
   title: string,
-  value: number
+  value: number | string
 };
 
 export default siteSituationType;
