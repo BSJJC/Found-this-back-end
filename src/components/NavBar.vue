@@ -29,15 +29,15 @@ setInterval(() => {
 
 <template>
   <div class="w-full h-full rounded-b-2xl box-with-shadow">
-    <div class="mx-[20px] h-full flex justify-between items-center select-none">
-      <div class="h-full grid cursor-default">
+    <div class="mx-[20px] h-full flex justify-between items-center">
+      <div id="title" class="h-full grid cursor-default">
         <p class="flex justify-center items-end">互联网+</p>
         <p class="flex justify-center items-start">在线服务平台</p>
       </div>
 
       <div class="flex h-full">
         <!-- time bar -->
-        <div class="flex justify-center items-center h-full">
+        <div id="title" class="flex justify-center items-center h-full">
           <div class="variable-element">{{ timeData.year }}</div>
           <div>年</div>
           <div class="variable-element">
@@ -89,7 +89,7 @@ setInterval(() => {
         </div>
 
         <!-- log out button -->
-        <div class="ml-4 flex items-center cursor-pointer">
+        <div id="title" class="ml-4 flex items-center cursor-pointer">
           <i-ep-SwitchButton />
         </div>
       </div>
@@ -106,5 +106,9 @@ setInterval(() => {
 
 .variable-element {
   @apply min-w-[20px] text-center;
+}
+
+#title {
+  color: var(--font-color-info);
 }
 </style>
