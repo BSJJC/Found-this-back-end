@@ -9,6 +9,10 @@ import 'element-plus/dist/index.css'
 
 import "./mock/index";
 
+
+
+
+
 const app = createApp(App)
 
 app.use(createPinia())
