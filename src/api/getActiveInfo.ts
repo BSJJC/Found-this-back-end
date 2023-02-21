@@ -1,5 +1,5 @@
 import axios from "axios";
-import ActiveInfo from "@/mock/ActiveInfo";
+import ActiveInfoMock from "@/mock/ActiveInfoMock";
 
 async function getActiveInfo() {
   let data;

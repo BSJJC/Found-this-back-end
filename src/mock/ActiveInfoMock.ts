@@ -1,6 +1,6 @@
 import Mock from "mockjs";
 
-const getAvriveInfo = Mock.mock("/mockApi/getActiveInfo", "get", () => {
+const getAvriveInfoMock = Mock.mock("/mockApi/getActiveInfo", "get", () => {
   return Mock.mock({
     "arr|5-20": [
       {
@@ -13,4 +13,4 @@ const getAvriveInfo = Mock.mock("/mockApi/getActiveInfo", "get", () => {
   })
 });
 
-export default getAvriveInfo;
+export default getAvriveInfoMock;
