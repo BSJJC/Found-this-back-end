@@ -11,12 +11,13 @@ getActiveInfo().then((res) => {
 </script>
 
 <template>
-  <el-scrollbar height="100%">
-    <el-table :data="data">
+  <div class="relateve w-full h-full">
+    <div id="title" class="w-full text-center">活跃人员信息</div>
+    <el-table :data="data" stripe height="85%">
       <el-table-column prop="number" label="序号" sortable />
       <el-table-column prop="userName" label="用户名" sortable />
       <el-table-column prop="IP" label="登录IP" sortable />
       <el-table-column prop="onlineTime" label="在线时长" sortable />
     </el-table>
-  </el-scrollbar>
+  </div>
 </template>

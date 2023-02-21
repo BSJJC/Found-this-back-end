@@ -38,5 +38,8 @@ const option = {
 </script>
 
 <template>
-  <v-chart class="chart" :option="option" autoresize />
+  <div class="relative w-full h-full">
+    <div id="title" class="absolute w-full text-center">搜索次数走势图</div>
+    <v-chart class="chart" :option="option" autoresize />
+  </div>
 </template>

@@ -195,5 +195,8 @@ const option = {
 </script>
 
 <template>
-  <v-chart class="chart" :option="option" autoresize />
+  <div class="relative h-full w-full">
+    <div id="title" class="absolute w-full text-center">模块话题数对比</div>
+    <v-chart class="chart" :option="option" autoresize />
+  </div>
 </template>
