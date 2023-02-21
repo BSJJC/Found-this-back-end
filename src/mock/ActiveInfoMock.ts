@@ -5,9 +5,9 @@ const getAvriveInfoMock = Mock.mock("/mockApi/getActiveInfo", "get", () => {
     "arr|5-20": [
       {
         "number|1-1000": 1,
-        "name": "@name",
+        "userName": "@name",
         "IP": "@ip",
-        "time": "@time"
+        "onlineTime": "@time"
       }
     ]
   })

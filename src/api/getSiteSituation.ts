@@ -1,5 +1,5 @@
 import axios from "axios";
-import siteSituationMock from "@/mock/siteSituationMock";
+import siteSituationMock from '@/mock/SiteSituationMock';
 import type siteSituationType from "@/types/siteSituationType";
 import addSuffix from "@/utils/addSuffix";
 
