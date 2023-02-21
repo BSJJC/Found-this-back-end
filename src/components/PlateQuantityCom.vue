@@ -12,6 +12,7 @@ import {
 } from "echarts/components";
 import { LineChart } from "echarts/charts";
 import { UniversalTransition } from "echarts/features";
+import getRandomArray from "@/utils/getRandomArray";
 
 use([
   CanvasRenderer,
@@ -52,7 +53,6 @@ const option = {
   ],
   series: [
     {
-      name: "Line 1",
       type: "line",
       stack: "Total",
       smooth: true,
@@ -76,10 +76,9 @@ const option = {
       emphasis: {
         focus: "series",
       },
-      data: [600, 100, 0, 400, 100, 200, 1000],
+      data: getRandomArray(6, 100),
     },
     {
-      name: "Line 2",
       type: "line",
       stack: "Total",
       smooth: true,
@@ -103,10 +102,9 @@ const option = {
       emphasis: {
         focus: "series",
       },
-      data: [120, 282, 111, 234, 220, 340, 310],
+      data: getRandomArray(6, 100),
     },
     {
-      name: "Line 3",
       type: "line",
       stack: "Total",
       smooth: true,
@@ -130,10 +128,9 @@ const option = {
       emphasis: {
         focus: "series",
       },
-      data: [320, 132, 201, 334, 190, 130, 220],
+      data: getRandomArray(6, 100),
     },
     {
-      name: "Line 4",
       type: "line",
       stack: "Total",
       smooth: true,
@@ -157,10 +154,9 @@ const option = {
       emphasis: {
         focus: "series",
       },
-      data: [220, 402, 231, 134, 190, 230, 120],
+      data: getRandomArray(6, 100),
     },
     {
-      name: "Line 5",
       type: "line",
       stack: "Total",
       smooth: true,
@@ -188,14 +184,14 @@ const option = {
       emphasis: {
         focus: "series",
       },
-      data: [220, 302, 181, 234, 210, 290, 150],
+      data: getRandomArray(6, 100),
     },
   ],
 };
 </script>
 
 <template>
-  <div class="relative h-full w-full">
+  <div class="relative h-full w-full pl-4">
     <div id="title" class="absolute w-full text-center">模块话题数对比</div>
     <v-chart class="chart" :option="option" autoresize />
   </div>
