@@ -6,6 +6,7 @@ import { GridComponent } from "echarts/components";
 import { LineChart } from "echarts/charts";
 import { UniversalTransition } from "echarts/features";
 import { CanvasRenderer } from "echarts/renderers";
+import getRandomArray from "@/utils/getRandomArray";
 
 use([GridComponent, LineChart, CanvasRenderer, UniversalTransition]);
 
@@ -19,7 +20,7 @@ const option = {
   },
   series: [
     {
-      data: [820, 932, 901, 934, 1290, 1330, 1320],
+      data: getRandomArray(7, 2000),
       type: "line",
       smooth: true,
       color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
