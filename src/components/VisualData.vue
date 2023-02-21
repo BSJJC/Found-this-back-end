@@ -30,25 +30,8 @@ use([
 
 const option = {
   color: ["#80FFA5", "#00DDFF", "#37A2FF", "#FF0087", "#FFBF00"],
-  title: {
-    text: "Gradient Stacked Area Chart",
-  },
-  tooltip: {
-    trigger: "axis",
-    axisPointer: {
-      type: "cross",
-      label: {
-        backgroundColor: "#6a7985",
-      },
-    },
-  },
   legend: {
     data: ["Line 1", "Line 2", "Line 3", "Line 4", "Line 5"],
-  },
-  toolbox: {
-    feature: {
-      saveAsImage: {},
-    },
   },
   grid: {
     left: "3%",
@@ -80,12 +63,12 @@ const option = {
       showSymbol: false,
       areaStyle: {
         opacity: 0.8,
-        color: "yellow"
+        color: "#80FFA5",
       },
       emphasis: {
         focus: "series",
       },
-      data: [140, 232, 101, 264, 90, 340, 250],
+      data: [600, 100, 0],
     },
     {
       name: "Line 2",
@@ -98,7 +81,7 @@ const option = {
       showSymbol: false,
       areaStyle: {
         opacity: 0.8,
-        color: "white"
+        color: "#00DDFF",
       },
       emphasis: {
         focus: "series",
@@ -116,7 +99,7 @@ const option = {
       showSymbol: false,
       areaStyle: {
         opacity: 0.8,
-        color: "black"
+        color: "#37A2FF",
       },
       emphasis: {
         focus: "series",
@@ -134,7 +117,7 @@ const option = {
       showSymbol: false,
       areaStyle: {
         opacity: 0.8,
-        color: "blue"
+        color: "#FF0087",
       },
       emphasis: {
         focus: "series",
@@ -156,7 +139,7 @@ const option = {
       },
       areaStyle: {
         opacity: 0.8,
-        color: "red",
+        color: "#FFBF00",
       },
       emphasis: {
         focus: "series",
@@ -166,5 +149,3 @@ const option = {
   ],
 };
 </script>
-
-<style scoped></style>
