@@ -11,7 +11,7 @@ getActiveInfo().then((res) => {
 </script>
 
 <template>
-  <div class="relateve w-full h-full">
+  <div class="relateve w-full h-full pr-4">
     <div id="title" class="w-full text-center">活跃人员信息</div>
     <el-table :data="data" stripe height="85%">
       <el-table-column prop="number" label="序号" sortable />
