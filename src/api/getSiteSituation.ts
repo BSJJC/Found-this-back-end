@@ -1,6 +1,5 @@
 import addSuffix from "@/utils/addSuffix";
 import axios from "axios";
-
 import type siteSituationType from "@/types/siteSituationType";
 
 async function getSiteSituation() {

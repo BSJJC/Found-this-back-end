@@ -1,4 +1,10 @@
 <script lang="ts" setup>
+import getActiveInfo from "@/api/getActiveInfo";
+
+getActiveInfo().then((res) => {
+  console.log(res);
+});
+
 interface User {
   number: string;
   userName: string;

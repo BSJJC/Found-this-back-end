@@ -12,7 +12,7 @@ import ActiveInfo from "./ActiveInfo.vue";
     <div class="grid-cols-1">
       <search-trend></search-trend>
     </div>
-    <div class="grid-cols-1">
+    <div class="grid-cols-1 p-10">
       <active-info></active-info>
     </div>
   </div>
