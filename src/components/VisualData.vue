@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import PlateQuantityCom from "./PlateQuantityCom.vue";
 import SearchTrend from "./SearchTrend.vue";
+import ActiveInfo from "./ActiveInfo.vue";
 </script>
 
 <template>
@@ -11,6 +12,8 @@ import SearchTrend from "./SearchTrend.vue";
     <div class="grid-cols-1">
       <search-trend></search-trend>
     </div>
-    <div class="grid-cols-1">321</div>
+    <div class="grid-cols-1">
+      <active-info></active-info>
+    </div>
   </div>
 </template>
