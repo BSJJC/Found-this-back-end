@@ -7,6 +7,7 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    ActiveInfo: typeof import('./../components/ActiveInfo.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElContainer: typeof import('element-plus/es')['ElContainer']
@@ -16,12 +17,17 @@ declare module '@vue/runtime-core' {
     ElHeader: typeof import('element-plus/es')['ElHeader']
     ElInput: typeof import('element-plus/es')['ElInput']
     ElMain: typeof import('element-plus/es')['ElMain']
+    ElScrollbar: typeof import('element-plus/es')['ElScrollbar']
+    ElTable: typeof import('element-plus/es')['ElTable']
+    ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
     IEpSwitchButton: typeof import('~icons/ep/switch-button')['default']
     IEpUser: typeof import('~icons/ep/user')['default']
     NavBar: typeof import('./../components/NavBar.vue')['default']
     OverView: typeof import('./../components/OverView.vue')['default']
+    PlateQuantityCom: typeof import('./../components/PlateQuantityCom.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SearchTrend: typeof import('./../components/SearchTrend.vue')['default']
     SideBar: typeof import('./../components/SideBar.vue')['default']
     SiteSituation: typeof import('./../components/SiteSituation.vue')['default']
     VisualData: typeof import('./../components/VisualData.vue')['default']

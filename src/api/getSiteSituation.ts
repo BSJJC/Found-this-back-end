@@ -1,7 +1,7 @@
-import addSuffix from "@/utils/addSuffix";
 import axios from "axios";
-
+import siteSituationMock from '@/mock/SiteSituationMock';
 import type siteSituationType from "@/types/siteSituationType";
+import addSuffix from "@/utils/addSuffix";
 
 async function getSiteSituation() {
   let siteSituationData: Array<siteSituationType> = [];
