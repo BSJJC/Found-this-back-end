@@ -4,7 +4,9 @@ import VisualData from "./VisualData.vue";
 </script>
 
 <template>
-  <div class="h-full w-full grid grid-rows-2 box-with-shadow rounded-2xl">
+  <div
+    class="h-full w-full grid grid-rows-2 box-with-shadow rounded-2xl bg-white"
+  >
     <div class="row-span-1">
       <site-situation></site-situation>
     </div>

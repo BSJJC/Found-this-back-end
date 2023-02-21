@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import SideBar from "@/components/SideBar.vue";
 import NavBar from "@/components/NavBar.vue";
-
 import OverView from "@/components/OverView.vue";
 
 let showingModule = shallowRef(OverView);

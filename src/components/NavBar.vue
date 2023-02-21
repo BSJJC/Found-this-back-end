@@ -28,7 +28,7 @@ setInterval(() => {
 </script>
 
 <template>
-  <div class="w-full h-full rounded-b-2xl box-with-shadow">
+  <div class="w-full h-full rounded-b-2xl box-with-shadow bg-white">
     <div class="mx-[20px] h-full flex justify-between items-center">
       <div id="title" class="h-full grid cursor-default">
         <p class="flex justify-center items-end">互联网+</p>
