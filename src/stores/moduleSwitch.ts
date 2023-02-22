@@ -7,7 +7,9 @@ export const useModuleSwitch = defineStore('moduleSwitch', {
     pages: [
       {
         name: "首页",
-        path: "/home"
+      },
+      {
+        name:"模块管理"
       },
       {
         name: "话题管理"
