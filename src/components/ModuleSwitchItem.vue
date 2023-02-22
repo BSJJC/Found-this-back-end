@@ -32,12 +32,12 @@ function selectedIndexChange(newIndex: number) {
     @mouseleave="hoverIndexReset"
   >
     <div
-      class="grid-col-2 col-span-2 flex justify-end items-center pr-3 text-lg"
+      class="grid-col-2 col-span-2 flex justify-end items-center pr-3 text-2xl"
     >
       <i-ep-HomeFilled />
     </div>
     <div
-      class="grid-col-4 col-span-4 w-full flex justify-start items-center text-md"
+      class="grid-col-4 col-span-4 w-full flex justify-start items-center text-xl"
     >
       首页{{ i }}
     </div>
