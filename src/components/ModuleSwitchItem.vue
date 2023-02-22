@@ -1,10 +1,15 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+const test = (test: any) => {
+  console.log(test);
+};
+</script>
 
 <template>
   <div
     class="w-full h-[70px] grid grid-cols-6 my-3 cursor-pointer z-10"
     v-for="(i, index) in 4"
     :key="index"
+    @mouseover="test(index)"
   >
     <div
       class="grid-col-2 col-span-2 flex justify-end items-center pr-3 text-lg"

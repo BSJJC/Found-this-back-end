@@ -6,6 +6,7 @@ const errorHandler = () => true;
 
 <template>
   <div class="w-full h-full bg-white">
+    <!-- avater -->
     <div class="w-full h-24 flex justify-center items-center">
       <el-avatar
         class="cursor-pointer"
@@ -19,6 +20,7 @@ const errorHandler = () => true;
       </el-avatar>
     </div>
 
+    <!-- router switch items -->
     <div class="w-full h-full mt-10">
       <module-switch></module-switch>
     </div>
