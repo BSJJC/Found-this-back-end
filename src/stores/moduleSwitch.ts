@@ -9,7 +9,7 @@ export const useModuleSwitch = defineStore('moduleSwitch', {
         name: "首页",
       },
       {
-        name:"模块管理"
+        name: "模块管理"
       },
       {
         name: "话题管理"
