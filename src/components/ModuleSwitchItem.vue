@@ -1,9 +1,13 @@
 <script lang="ts" setup>
 import { storeToRefs } from "pinia";
-import { useModuleSwitch } from "@/stores/index";
+import { useModuleSwitch, useHome } from "@/stores/index";
 
-const store = useModuleSwitch();
-const { hoverIndex, selectedIndex } = storeToRefs(store);
+const switchStore = useModuleSwitch();
+const { hoverIndex, selectedIndex, pages } = storeToRefs(switchStore);
+const _pages = pages;
+
+const homeStore = useHome();
+const { moduleIndex } = storeToRefs(homeStore);
 
 let hoverIndexResetTartget = ref(0);
 
@@ -15,19 +19,20 @@ function hoverIndexReset() {
   hoverIndex.value = hoverIndexResetTartget.value;
 }
 
-function selectedIndexChange(newIndex: number) {
+function selectedIndexChange(newIndex: number, newModuleIndex: number) {
   selectedIndex.value = newIndex;
   hoverIndex.value = newIndex;
   hoverIndexResetTartget.value = newIndex;
+  moduleIndex.value = newModuleIndex;
 }
 </script>
 
 <template>
   <div
     class="w-full h-[70px] grid grid-cols-6 my-3 cursor-pointer z-10"
-    v-for="(i, index) in 4"
+    v-for="(i, index) in _pages"
     :key="index"
-    @mousedown="selectedIndexChange(index)"
+    @mousedown="selectedIndexChange(index, index)"
     @mouseenter="hoverIndexChange(index)"
     @mouseleave="hoverIndexReset"
   >
@@ -39,7 +44,7 @@ function selectedIndexChange(newIndex: number) {
     <div
       class="grid-col-4 col-span-4 w-full flex justify-start items-center text-xl"
     >
-      首页{{ i }}
+      {{ i.name }}
     </div>
   </div>
 </template>

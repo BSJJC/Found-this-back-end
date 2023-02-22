@@ -1,9 +1,22 @@
 <script lang="ts" setup>
 import SideBar from "@/components/SideBar.vue";
 import NavBar from "@/components/NavBar.vue";
-import OverView from "@/components/OverView.vue";
 
-let showingModule = shallowRef(OverView);
+import OverView from "@/components/OverView.vue";
+import ModuleManagement from "./ModuleManagement.vue";
+
+import { useHome } from "@/stores/index";
+import { storeToRefs } from "pinia";
+
+const store = useHome();
+const { moduleIndex } = storeToRefs(store);
+
+const modules = [OverView, ModuleManagement];
+let showingModule = shallowRef(modules[moduleIndex.value]);
+
+watch(moduleIndex, () => {
+  showingModule.value = modules[moduleIndex.value];
+});
 </script>
 
 <template>
@@ -19,7 +32,7 @@ let showingModule = shallowRef(OverView);
         <el-main>
           <router-view>
             <transition name="fade">
-              <Component :is="showingModule"></Component>
+              <component :is="showingModule"></component>
             </transition>
           </router-view>
         </el-main>
@@ -29,7 +42,15 @@ let showingModule = shallowRef(OverView);
 </template>
 
 <style lang="scss">
+* {
+  overflow: hidden;
+}
+
 .el-container {
   height: 100vh;
+}
+
+.el-main {
+  overflow: hidden !important;
 }
 </style>
