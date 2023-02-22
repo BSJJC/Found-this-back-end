@@ -4,15 +4,10 @@ import { useModuleSwitch } from "@/stores/index";
 
 const store = useModuleSwitch();
 const { hoverIndex, selectedIndex } = storeToRefs(store);
-
-watch(selectedIndex, (newVal, oldVal) => {
-  console.log("selected indedx changed");
-  console.log("old value " + oldVal);
-  console.log("new value " + newVal);
-});
 </script>
 
 <template>
+  <!-- selected item shadow -->
   <div
     class="absolute w-full h-[94px] ease-in-out duration-300"
     :style="{ marginTop: `${selectedIndex * 94}px` }"
@@ -33,6 +28,7 @@ watch(selectedIndex, (newVal, oldVal) => {
     </div>
   </div>
 
+  <!-- hover item shadow -->
   <div
     class="absolute w-full h-[94px] mt-0 ease-in-out duration-300"
     :style="{ marginTop: `${hoverIndex * 94}px` }"
