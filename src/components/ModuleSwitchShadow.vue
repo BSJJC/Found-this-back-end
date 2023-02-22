@@ -1,4 +1,22 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { storeToRefs } from "pinia";
+import { useModuleSwitch } from "@/stores/index";
+
+const store = useModuleSwitch();
+const { hoverIndex, selectedIndex } = storeToRefs(store);
+
+watch(selectedIndex, (newVal, oldVal) => {
+  console.log("selected indedx changed");
+  console.log("old value " + oldVal);
+  console.log("new value " + newVal);
+});
+
+watch(hoverIndex, (newVal, oldVal) => {
+  console.log("hover index changed");
+  console.log("old value " + oldVal);
+  console.log("new value " + newVal);
+});
+</script>
 
 <template>
   <div class="absolute w-full h-[94px] z-0">
