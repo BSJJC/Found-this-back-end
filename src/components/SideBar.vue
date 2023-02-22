@@ -1,5 +1,28 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import ModuleSwitch from "./ModuleSwitch.vue";
+
+const errorHandler = () => true;
+</script>
 
 <template>
-  <div class="bg-yellow-300 w-full h-full"></div>
+  <div class="w-full h-full bg-white">
+    <!-- avater -->
+    <div class="w-full h-24 flex justify-center items-center">
+      <el-avatar
+        class="cursor-pointer"
+        :size="70"
+        src="https://api.yimian.xyz/img?type=head"
+        @error="errorHandler"
+      >
+        <img
+          src="https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png"
+        />
+      </el-avatar>
+    </div>
+
+    <!-- router switch items -->
+    <div class="w-full h-full mt-10">
+      <module-switch></module-switch>
+    </div>
+  </div>
 </template>

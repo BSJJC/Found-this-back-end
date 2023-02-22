@@ -1,5 +1,2 @@
-import { defineStore } from 'pinia'
-
-export const useStore = defineStore('main', {
-  
-})
+export * from "./home";
+export * from "./moduleSwitch";
