@@ -10,16 +10,13 @@ watch(selectedIndex, (newVal, oldVal) => {
   console.log("old value " + oldVal);
   console.log("new value " + newVal);
 });
-
-watch(hoverIndex, (newVal) => {
-  marginTop.value = newVal * 94;
-});
-
-let marginTop = ref(0);
 </script>
 
 <template>
-  <div class="absolute w-full h-[94px]">
+  <div
+    class="absolute w-full h-[94px] ease-in-out duration-300"
+    :style="{ marginTop: `${selectedIndex * 94}px` }"
+  >
     <!-- top concave triangle -->
     <div class="circle-wrapper ml-[calc(100%-20px)]">
       <div id="top" class="circle"></div>
@@ -38,7 +35,7 @@ let marginTop = ref(0);
 
   <div
     class="absolute w-full h-[94px] mt-0 ease-in-out duration-300"
-    :style="{ marginTop: `${marginTop}px` }"
+    :style="{ marginTop: `${hoverIndex * 94}px` }"
   >
     <!-- top concave triangle -->
     <div class="circle-wrapper ml-[calc(100%-20px)]"></div>
