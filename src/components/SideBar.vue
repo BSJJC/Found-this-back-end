@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import ModuleSwitch from "./ModuleSwitch.vue";
+
 const errorHandler = () => true;
 </script>
 
@@ -16,6 +18,9 @@ const errorHandler = () => true;
         />
       </el-avatar>
     </div>
-    <div class="w-full h-full bg-green-300"></div>
+
+    <div class="w-full h-full mt-10">
+      <module-switch></module-switch>
+    </div>
   </div>
 </template>
