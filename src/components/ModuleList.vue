@@ -1,3 +1,5 @@
 <script lang="ts" setup></script>
 
-<template>mnodule list</template>
+<template>
+  <div></div>
+</template>
