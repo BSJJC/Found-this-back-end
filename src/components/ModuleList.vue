@@ -1,43 +1,42 @@
 <script lang="ts" setup></script>
 
 <template>
-  <div class="w-full h-full">
-    <el-scrollbar height="100%">
-      <div
-        class="w-[calc(100%-10px)] h-14 my-4 px-4 border-2 rounded-md cursor-pointer border-gray-300"
-        v-for="(i, index) in 100"
-        :key="index"
-      >
-        <div class="w-full h-full flex flex-row">
-          <div class="w-[250px] flex h-full justify-start items-center pl-4">
-            <el-checkbox :v-model="i" />
-            <div class="flex justify-start items-center h-full w-[150px] ml-4">
-              <div class="text-lg truncate">
+  <div class="w-full h-full pt-0">
+    <div class="w-full h-full p-4 pt-0">
+      <el-scrollbar class="pr-3">
+        <div
+          class="w-full h-12 mb-4 flex justify-center items-center border-2 border-gray-200 rounded-lg"
+          v-for="(i, index) in 40"
+          :key="index"
+        >
+          <el-checkbox class="w-full pl-4">
+            <div class="w-full flex flex-row text-xl">
+              <div class="w-64 ml-4 truncate">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Repudiandae, eius dignissimos. Perspiciatis quod unde eligendi
-                quae porro, nemo, praesentium possimus veniam aperiam dolores
-                cum ex velit! Ullam facilis aspernatur necessitatibus.
+                Incidunt ipsa architecto possimus asperiores sapiente quisquam
+                excepturi qui ipsam quibusdam aut cum eligendi est ut in
+                corrupti, laborum consectetur voluptas similique.
+              </div>
+              <div class="w-full ml-10 truncate">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum
+                necessitatibus voluptates minus ipsum cupiditate perferendis
+                reprehenderit at, beatae fuga repellat eos ab, temporibus cumque
+                possimus, ut molestias quod quaerat est!
               </div>
             </div>
-          </div>
-          <div
-            class="w-[calc(100%-250px)] h-ull flex justify-start items-center"
-          >
-            <div class="text-xl truncate">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro
-              architecto molestias debitis illo, accusamus aliquid illum amet
-              voluptatem blanditiis, ratione, vero nostrum eveniet nobis rem
-              voluptas consequatur esse repudiandae ab.
-            </div>
-          </div>
+          </el-checkbox>
         </div>
-      </div>
-    </el-scrollbar>
+      </el-scrollbar>
+    </div>
   </div>
 </template>
 
-<style lang="scss" scoped>
-.el-checkbox {
+<style lang="scss">
+.el-checkbox__input {
   transform: scale(1.6);
+}
+
+.el-checkbox__label {
+  width: 100%;
 }
 </style>

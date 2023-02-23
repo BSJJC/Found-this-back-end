@@ -18,4 +18,8 @@ import ModuleList from "@/components/ModuleList.vue";
 .el-container {
   height: 100% !important;
 }
+
+.el-main {
+  padding-top: 0px;
+}
 </style>
