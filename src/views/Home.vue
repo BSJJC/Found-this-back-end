@@ -20,32 +20,26 @@ watch(moduleIndex, () => {
 </script>
 
 <template>
-  <div class="flex-base">
+  <el-container>
+    <el-aside width="200px">
+      <side-bar></side-bar>
+    </el-aside>
     <el-container>
-      <el-aside width="200px">
-        <side-bar></side-bar>
-      </el-aside>
-      <el-container>
-        <el-header>
-          <nav-bar></nav-bar>
-        </el-header>
-        <el-main>
-          <router-view>
-            <transition name="fade">
-              <component :is="showingModule"></component>
-            </transition>
-          </router-view>
-        </el-main>
-      </el-container>
+      <el-header>
+        <nav-bar></nav-bar>
+      </el-header>
+      <el-main>
+        <router-view>
+          <transition name="fade">
+            <component :is="showingModule"></component>
+          </transition>
+        </router-view>
+      </el-main>
     </el-container>
-  </div>
+  </el-container>
 </template>
 
-<style lang="scss">
-* {
-  overflow: hidden;
-}
-
+<style lang="scss" scoped>
 .el-container {
   height: 100vh;
 }

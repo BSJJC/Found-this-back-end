@@ -46,7 +46,7 @@ const { hoverIndex, selectedIndex } = storeToRefs(store);
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 $circle-wrapper: 20px;
 $circle: 130px;
 $border: 41px;
