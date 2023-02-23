@@ -65,7 +65,7 @@ setInterval(() => {
           </div>
           <div class="variable-element">
             {{
-              timeData.hour >= 1 && timeData.hour <= 9
+              timeData.hour >= 0 && timeData.hour <= 9
                 ? addPrefix(timeData.hour, "0")
                 : timeData.hour
             }}
@@ -73,7 +73,7 @@ setInterval(() => {
           :
           <div class="variable-element">
             {{
-              timeData.minute >= 1 && timeData.minute <= 9
+              timeData.minute >= 0 && timeData.minute <= 9
                 ? addPrefix(timeData.minute, "0")
                 : timeData.minute
             }}
@@ -81,7 +81,7 @@ setInterval(() => {
           :
           <div class="variable-element">
             {{
-              timeData.second >= 1 && timeData.second <= 9
+              timeData.second >= 0 && timeData.second <= 9
                 ? addPrefix(timeData.second, "0")
                 : timeData.second
             }}
