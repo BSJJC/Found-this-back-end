@@ -41,7 +41,7 @@ watch(moduleIndex, () => {
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 * {
   overflow: hidden;
 }

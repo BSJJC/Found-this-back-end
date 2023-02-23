@@ -16,7 +16,7 @@ import VisualData from "./VisualData.vue";
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .el-main {
   padding: 15px 15px 15px 20px !important;
 }
