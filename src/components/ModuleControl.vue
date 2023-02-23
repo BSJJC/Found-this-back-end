@@ -8,8 +8,8 @@
       <i-ep-Delete class="mx-3 text-xl opacity-40" />
     </div>
     <!-- module add button -->
-    <div>
-      <el-button class="w-20">添加</el-button>
+    <div class="flex justify-center items-center">
+      <el-button class="mr-8 w-20">添加</el-button>
     </div>
   </div>
 </template>

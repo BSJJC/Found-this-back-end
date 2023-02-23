@@ -4,7 +4,7 @@
   <div class="w-full h-full">
     <el-scrollbar height="100%">
       <div
-        class="w-[calc(100%-10px)] h-14 my-4 px-4 border-2 rounded-md border-gray-300"
+        class="w-[calc(100%-10px)] h-14 my-4 px-4 border-2 rounded-md cursor-pointer border-gray-300"
         v-for="(i, index) in 100"
         :key="index"
       >

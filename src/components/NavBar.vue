@@ -97,7 +97,7 @@ setInterval(() => {
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .el-header {
   height: 80px !important;
   padding-right: 0px !important;
