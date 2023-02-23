@@ -4,20 +4,18 @@ import ModuleList from "@/components/ModuleList.vue";
 </script>
 
 <template>
-  <div
-    class="h-full w-full grid grid-rows-2 box-with-shadow rounded-2xl bg-white"
-  >
-    <div class="common-layout">
-      <el-container>
-        <el-header>
-          <module-control></module-control>
-        </el-header>
-        <el-main>
-          <module-list></module-list>
-        </el-main>
-      </el-container>
-    </div>
-  </div>
+  <el-container class="bg-white rounded-3xl">
+    <el-header>
+      <module-control></module-control>
+    </el-header>
+    <el-main>
+      <module-list></module-list>
+    </el-main>
+  </el-container>
 </template>
 
-<style lang="scss"></style>
+<style lang="scss" scoped>
+.el-container {
+  height: 100% !important;
+}
+</style>

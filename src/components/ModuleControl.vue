@@ -4,8 +4,8 @@
   <div class="w-full h-full pt-4 flex flex-row justify-between">
     <!-- module edit area -->
     <div class="w-1/2 h-full flex justify-start items-center">
-      <i-ep-Document class="mr-5 text-xl opacity-40" />
-      <i-ep-Delete class="mr-5 text-xl opacity-40" />
+      <i-ep-Document class="mx-3 text-xl opacity-40" />
+      <i-ep-Delete class="mx-3 text-xl opacity-40" />
     </div>
     <!-- module add button -->
     <div>
