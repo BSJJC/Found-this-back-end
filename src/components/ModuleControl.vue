@@ -1,7 +1,3 @@
-<script lang="ts" setup>
-
-</script>
-
 <template>
   <div class="w-full h-full pt-4 flex flex-row justify-between">
     <!-- module edit area -->
@@ -10,7 +6,7 @@
       <i-ep-Delete class="mx-3 text-xl opacity-40 cursor-pointer" />
     </div>
     <!-- module add button -->
-    <div class="flex justify-center items-center">
+    <div class="flex justify-center items-center pr-5">
       <el-button class="mr-8 w-20">添加</el-button>
     </div>
   </div>

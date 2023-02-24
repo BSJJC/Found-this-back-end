@@ -1,13 +1,13 @@
 <script lang="ts" setup>
 import { storeToRefs } from "pinia";
-import { useModuleSwitch, useHome } from "@/stores/index";
+import { useModuleSwitch } from "@/stores/index";
+import { useRouter } from "vue-router";
 
 const switchStore = useModuleSwitch();
 const { hoverIndex, selectedIndex, pages } = storeToRefs(switchStore);
 const _pages = pages;
 
-const homeStore = useHome();
-const { moduleIndex } = storeToRefs(homeStore);
+const router = useRouter();
 
 let hoverIndexResetTartget = ref(0);
 
@@ -19,11 +19,12 @@ function hoverIndexReset() {
   hoverIndex.value = hoverIndexResetTartget.value;
 }
 
-function selectedIndexChange(newIndex: number, newModuleIndex: number) {
+function selectedIndexChange(newIndex: number, newPath: string) {
   selectedIndex.value = newIndex;
   hoverIndex.value = newIndex;
   hoverIndexResetTartget.value = newIndex;
-  moduleIndex.value = newModuleIndex;
+
+  router.push(newPath);
 }
 </script>
 
@@ -32,7 +33,7 @@ function selectedIndexChange(newIndex: number, newModuleIndex: number) {
     class="w-full h-[70px] grid grid-cols-6 my-3 cursor-pointer z-10"
     v-for="(i, index) in _pages"
     :key="index"
-    @mousedown="selectedIndexChange(index, index)"
+    @mousedown="selectedIndexChange(index, i.path as string)"
     @mouseenter="hoverIndexChange(index)"
     @mouseleave="hoverIndexReset"
   >

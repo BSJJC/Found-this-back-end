@@ -2,11 +2,11 @@
 import getModuleList from "@/api/getModuleList";
 import type moduleListType from "@/types/moduleListType";
 
-let data: moduleListType[] = [];
+const temp: moduleListType[] = [];
+const data: Ref<moduleListType[]> = ref(temp);
 
 getModuleList().then((res) => {
-  data = res;
-  console.log(data);
+  data.value = res;
 });
 </script>
 

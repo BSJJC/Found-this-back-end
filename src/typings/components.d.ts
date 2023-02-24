@@ -29,6 +29,7 @@ declare module '@vue/runtime-core' {
     IEpUser: typeof import('~icons/ep/user')['default']
     ModuleControl: typeof import('./../components/ModuleControl.vue')['default']
     ModuleList: typeof import('./../components/ModuleList.vue')['default']
+    ModuleManagement: typeof import('./../components/ModuleManagement.vue')['default']
     ModuleSwitch: typeof import('./../components/ModuleSwitch.vue')['default']
     ModuleSwitchItem: typeof import('./../components/ModuleSwitchItem.vue')['default']
     ModuleSwitchShadow: typeof import('./../components/ModuleSwitchShadow.vue')['default']

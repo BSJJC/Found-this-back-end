@@ -1,22 +1,6 @@
 <script lang="ts" setup>
 import SideBar from "@/components/SideBar.vue";
 import NavBar from "@/components/NavBar.vue";
-
-import OverView from "@/components/OverView.vue";
-import ModuleManagement from "./ModuleManagement.vue";
-
-import { useHome } from "@/stores/index";
-import { storeToRefs } from "pinia";
-
-const store = useHome();
-const { moduleIndex } = storeToRefs(store);
-
-const modules = [OverView, ModuleManagement];
-let showingModule = shallowRef(modules[moduleIndex.value]);
-
-watch(moduleIndex, () => {
-  showingModule.value = modules[moduleIndex.value];
-});
 </script>
 
 <template>
@@ -29,9 +13,9 @@ watch(moduleIndex, () => {
         <nav-bar></nav-bar>
       </el-header>
       <el-main>
-        <router-view>
+        <router-view v-slot="{ Component }">
           <transition name="fade">
-            <component :is="showingModule"></component>
+            <component :is="Component"></component>
           </transition>
         </router-view>
       </el-main>
