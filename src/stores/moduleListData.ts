@@ -5,4 +5,4 @@ export const useModuleListData = defineStore('moduleListData', {
   state: () => ({
     data: <moduleListType[]>[]
   })
-})
+});

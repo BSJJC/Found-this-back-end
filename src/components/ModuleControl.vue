@@ -1,3 +1,15 @@
+<script lang="ts" setup>
+import { storeToRefs } from "pinia";
+import { useModuleListData } from "@/stores/index";
+
+const store = useModuleListData();
+let { data } = storeToRefs(store);
+
+setTimeout(() => {
+  console.log(data.value);
+}, 1000);
+</script>
+
 <template>
   <div class="w-full h-full pt-4 flex flex-row justify-between">
     <!-- module edit area -->
