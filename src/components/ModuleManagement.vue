@@ -4,7 +4,7 @@ import ModuleList from "@/components/ModuleList.vue";
 </script>
 
 <template>
-  <el-container class="bg-white rounded-3xl">
+  <el-container class="bg-white rounded-3xl box-with-shadow">
     <el-header>
       <module-control></module-control>
     </el-header>

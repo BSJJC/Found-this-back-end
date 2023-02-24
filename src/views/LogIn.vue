@@ -56,9 +56,7 @@ const submitForm = async (formEl: FormInstance | undefined): Promise<void> => {
       });
       console.log("submit!");
       setTimeout(() => {
-        router.push({
-          name: "Home",
-        });
+        router.push("/home/overView");
       }, 500);
     } else {
       ///    Login failed
