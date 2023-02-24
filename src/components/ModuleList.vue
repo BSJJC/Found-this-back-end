@@ -2,13 +2,39 @@
 import { storeToRefs } from "pinia";
 import getModuleList from "@/api/getModuleList";
 import { useModuleListData } from "@/stores/index";
+import type moduleListType from "@/types/moduleListType";
 
 const store = useModuleListData();
-let { data } = storeToRefs(store);
+const { listData, selectedModules } = storeToRefs(store);
+
+const temp: Array<number> = [];
+const selectedIndexes = ref(temp);
 
 getModuleList().then((res) => {
-  data.value = res;
+  listData.value = res;
 });
+
+function addToSelecteds(index: number, object: moduleListType) {
+  selectedModules.value.push(object);
+  selectedIndexes.value.push(index);
+}
+function removeFromSelecteds(index: number, object: moduleListType) {
+  const itemIndex = selectedIndexes.value.indexOf(index);
+  selectedIndexes.value.splice(itemIndex, 1);
+  selectedModules.value.splice(itemIndex, 1);
+}
+
+function addOrRemove(index: number, object: moduleListType) {
+  console.log(selectedIndexes.value.indexOf(index));
+
+  if (selectedIndexes.value.indexOf(index)) {
+    // not in selected indexes
+    addToSelecteds(index, object);
+  } else {
+    // already in selected indexes
+    removeFromSelecteds(index, object);
+  }
+}
 </script>
 
 <template>
@@ -17,10 +43,13 @@ getModuleList().then((res) => {
       <el-scrollbar class="pr-3">
         <div
           class="w-full h-12 mb-4 flex justify-center items-center border-2 border-gray-200 rounded-lg"
-          v-for="(i, index) in data"
+          v-for="(i, index) in listData"
           :key="index"
         >
-          <el-checkbox class="w-full pl-4">
+          <el-checkbox
+            class="w-full pl-4"
+            @change="addOrRemove(index, { title: i.title, intro: i.intro })"
+          >
             <div class="w-full flex flex-row text-xl">
               <div class="w-64 ml-4 truncate transition duration-200">
                 {{ i.title }}
