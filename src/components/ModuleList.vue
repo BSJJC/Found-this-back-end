@@ -1,9 +1,10 @@
 <script lang="ts" setup>
+import { storeToRefs } from "pinia";
 import getModuleList from "@/api/getModuleList";
-import type moduleListType from "@/types/moduleListType";
+import { useModuleListData } from "@/stores/index";
 
-const temp: moduleListType[] = [];
-const data: Ref<moduleListType[]> = ref(temp);
+const store = useModuleListData();
+let { data } = storeToRefs(store);
 
 getModuleList().then((res) => {
   data.value = res;
