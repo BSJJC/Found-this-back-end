@@ -1,4 +1,14 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import getModuleList from "@/api/getModuleList";
+import type moduleListType from "@/types/moduleListType";
+
+let data: moduleListType[] = [];
+
+getModuleList().then((res) => {
+  data = res;
+  console.log(data);
+});
+</script>
 
 <template>
   <div class="w-full h-full pt-0">
@@ -6,22 +16,16 @@
       <el-scrollbar class="pr-3">
         <div
           class="w-full h-12 mb-4 flex justify-center items-center border-2 border-gray-200 rounded-lg"
-          v-for="(i, index) in 40"
+          v-for="(i, index) in data"
           :key="index"
         >
           <el-checkbox class="w-full pl-4">
             <div class="w-full flex flex-row text-xl">
-              <div class="w-64 ml-4 truncate">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Incidunt ipsa architecto possimus asperiores sapiente quisquam
-                excepturi qui ipsam quibusdam aut cum eligendi est ut in
-                corrupti, laborum consectetur voluptas similique.
+              <div class="w-64 ml-4 truncate transition duration-200">
+                {{ i.title }}
               </div>
-              <div class="w-full ml-10 truncate">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum
-                necessitatibus voluptates minus ipsum cupiditate perferendis
-                reprehenderit at, beatae fuga repellat eos ab, temporibus cumque
-                possimus, ut molestias quod quaerat est!
+              <div class="w-full ml-10 truncate transition duration-200">
+                {{ i.intro }}
               </div>
             </div>
           </el-checkbox>

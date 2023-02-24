@@ -1,11 +1,13 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+
+</script>
 
 <template>
   <div class="w-full h-full pt-4 flex flex-row justify-between">
     <!-- module edit area -->
-    <div class="w-1/2 h-full flex justify-start items-center">
-      <i-ep-Document class="mx-3 text-xl opacity-40" />
-      <i-ep-Delete class="mx-3 text-xl opacity-40" />
+    <div class="w-1/2 h-full flex justify-start items-center pl-2">
+      <i-ep-Document class="mx-3 text-xl opacity-40 cursor-pointer" />
+      <i-ep-Delete class="mx-3 text-xl opacity-40 cursor-pointer" />
     </div>
     <!-- module add button -->
     <div class="flex justify-center items-center">
