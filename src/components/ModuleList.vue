@@ -14,16 +14,31 @@ getModuleList().then((res) => {
   listData.value = res;
 });
 
+/**
+ *  add the selected object to selected modules
+ * @param index the index of the selected item
+ * @param object the object of the selected object
+ */
 function addToSelecteds(index: number, object: moduleListType) {
   selectedModules.value.push(object);
   selectedIndexes.value.push(index);
 }
-function removeFromSelecteds(index: number, object: moduleListType) {
+
+/**
+ *  remove the selected object from selected modules
+ * @param index the index of the selected item
+ */
+function removeFromSelecteds(index: number) {
   const itemIndex = selectedIndexes.value.indexOf(index);
   selectedIndexes.value.splice(itemIndex, 1);
   selectedModules.value.splice(itemIndex, 1);
 }
 
+/**
+ *  add of remove an object into or from selected moduels
+ * @param index the index of te selected item
+ * @param object the selected object
+ */
 function addOrRemove(index: number, object: moduleListType) {
   console.log(selectedIndexes.value.indexOf(index));
 
@@ -32,7 +47,7 @@ function addOrRemove(index: number, object: moduleListType) {
     addToSelecteds(index, object);
   } else {
     // already in selected indexes
-    removeFromSelecteds(index, object);
+    removeFromSelecteds(index);
   }
 }
 </script>
