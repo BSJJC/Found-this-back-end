@@ -4,10 +4,6 @@ import { useModuleListData } from "@/stores/index";
 
 const store = useModuleListData();
 let { data } = storeToRefs(store);
-
-setTimeout(() => {
-  console.log(data.value);
-}, 1000);
 </script>
 
 <template>

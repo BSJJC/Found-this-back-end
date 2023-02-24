@@ -9,7 +9,7 @@ const _pages = pages;
 
 const router = useRouter();
 
-let hoverIndexResetTartget = ref(0);
+let hoverIndexResetTartget = ref(hoverIndex.value);
 
 function hoverIndexChange(newIndex: number) {
   hoverIndex.value = newIndex;

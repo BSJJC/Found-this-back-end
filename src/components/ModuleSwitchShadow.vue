@@ -3,7 +3,19 @@ import { storeToRefs } from "pinia";
 import { useModuleSwitch } from "@/stores/index";
 
 const store = useModuleSwitch();
-const { hoverIndex, selectedIndex } = storeToRefs(store);
+const { hoverIndex, selectedIndex, pages } = storeToRefs(store);
+
+///    init module switch shadow position
+for (let i = 0; i < pages.value.length; i++) {
+  const urlNow = window.location.href.split("/home")[1];
+  const url = pages.value[i].path?.split("/home")[1];
+
+  if (urlNow === url) {
+    selectedIndex.value = i;
+    hoverIndex.value = i;
+    break;
+  }
+}
 </script>
 
 <template>
