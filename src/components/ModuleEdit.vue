@@ -11,7 +11,7 @@ const temp = <editModuleType>{};
 const data: Ref<editModuleType> = ref(temp);
 
 function disablePreBtm() {
-  if (selectedModuleIndexes.value[editingModuleIndex.value - 1]) {
+  if (editingModuleIndex.value !== 0) {
     return true;
   } else {
     return false;
@@ -19,7 +19,7 @@ function disablePreBtm() {
 }
 
 function disableNextBtn() {
-  if (selectedModuleIndexes.value[editingModuleIndex.value + 1]) {
+  if (editingModuleIndex.value < selectedModuleIndexes.value.length - 1) {
     return true;
   } else {
     return false;
@@ -53,7 +53,7 @@ watch(editingModuleIndex, () => {
     </el-form-item>
 
     <el-form-item label="intro: ">
-      <el-input type="textarea" v-model="data.intro" />
+      <el-input type="textarea" v-model="data.intro" :rows="2" />
     </el-form-item>
 
     <el-form-item>
@@ -79,7 +79,7 @@ watch(editingModuleIndex, () => {
   </el-form>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .el-button {
   margin-left: 0px !important;
   margin-right: 1rem !important;
