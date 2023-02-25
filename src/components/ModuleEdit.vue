@@ -1,38 +1,27 @@
 <script lang="ts" setup>
-const props = defineProps<{
-  nowTitle?: string;
-  nowIntro?: string;
-}>();
+import { storeToRefs } from "pinia";
+import { useModuleListData } from "@/stores/index";
+import type editModuleType from "@/types/editModuleType";
 
-const { nowTitle, nowIntro } = props;
+const store = useModuleListData();
+const { listData, selectedModuleIndexes } = storeToRefs(store);
 
-const form = reactive({
-  user: "",
-  region: "",
-});
+const temp = <editModuleType>{};
+const data: Ref<editModuleType> = ref(temp);
+
+let editingModuleIndex = ref(0);
 </script>
 
 <template>
-  <div class="w-full h-auto">
-    <el-form :model="form">
-      <el-form-item label="title now" v-if="nowTitle">
-        <span>{{ nowTitle }}</span>
-      </el-form-item>
-      <el-form-item :label="nowTitle ? 'new title' : 'title'">
-        <el-input></el-input>
-      </el-form-item>
-      <el-form-item label="intro now" v-if="nowIntro">
-        <span>{{ nowIntro }}</span>
-      </el-form-item>
-      <el-form-item :label="nowIntro ? 'new intro' : 'intro'">
-        <el-input></el-input>
-      </el-form-item>
-    </el-form>
-  </div>
+  <el-form label-width="50px" v-model="data">
+    <el-form-item label="title:">
+      <el-input v-model="data.title" />
+    </el-form-item>
+
+    <el-form-item label="intro: ">
+      <el-input type="textarea" v-model="data.intro" />
+    </el-form-item>
+  </el-form>
 </template>
 
-<style lang="scss">
-.el-dialog {
-  transform: scale(1.5);
-}
-</style>
+<style lang="scss" scoped></style>
