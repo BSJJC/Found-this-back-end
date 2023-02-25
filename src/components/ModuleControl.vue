@@ -7,10 +7,16 @@ const editModule = ref(false);
 const addModule = ref(false);
 
 const store = useModuleListData();
-const { selectedModuleIndexes } = storeToRefs(store);
+const { selectedModuleIndexes, editingModuleIndex } = storeToRefs(store);
+
+function resetEditingModuleIndex() {
+  editingModuleIndex.value = 0;
+}
 
 function showEditModule() {
   if (selectedModuleIndexes.value.length >= 1) {
+    selectedModuleIndexes.value.sort();
+
     editModule.value = true;
   } else {
     ElMessage({
@@ -32,7 +38,12 @@ function showEditModule() {
       />
 
       <!-- edit module -->
-      <el-dialog v-model="editModule" title="Edit module" draggable>
+      <el-dialog
+        v-model="editModule"
+        title="Edit module"
+        draggable
+        @close="resetEditingModuleIndex"
+      >
         <module-edit></module-edit>
       </el-dialog>
 

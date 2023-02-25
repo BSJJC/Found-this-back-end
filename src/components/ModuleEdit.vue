@@ -4,15 +4,40 @@ import { useModuleListData } from "@/stores/index";
 import type editModuleType from "@/types/editModuleType";
 
 const store = useModuleListData();
-const { listData, selectedModuleIndexes } = storeToRefs(store);
+const { listData, selectedModuleIndexes, editingModuleIndex } =
+  storeToRefs(store);
 
 const temp = <editModuleType>{};
 const data: Ref<editModuleType> = ref(temp);
 
-let editingModuleIndex = ref(0);
+function disablePreBtm() {
+  if (selectedModuleIndexes.value[editingModuleIndex.value - 1]) {
+    return true;
+  } else {
+    return false;
+  }
+}
 
-data.value.title = listData.value[editingModuleIndex.value].title;
-data.value.intro = listData.value[editingModuleIndex.value].intro;
+function disableNextBtn() {
+  if (selectedModuleIndexes.value[editingModuleIndex.value + 1]) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function changeEditingData() {
+  data.value.title =
+    listData.value[selectedModuleIndexes.value[editingModuleIndex.value]].title;
+  data.value.intro =
+    listData.value[selectedModuleIndexes.value[editingModuleIndex.value]].intro;
+}
+
+changeEditingData();
+
+watch(editingModuleIndex, () => {
+  changeEditingData();
+});
 </script>
 
 <template>
@@ -34,9 +59,17 @@ data.value.intro = listData.value[editingModuleIndex.value].intro;
     <el-form-item>
       <div class="w-full h-full p-3 flex flex-row justify-between items-center">
         <div>
-          <el-button>pre module</el-button>
-          <el-button>next module</el-button>
+          <el-button v-show="disablePreBtm()" @click="editingModuleIndex--"
+            >pre module</el-button
+          >
+          <el-button v-show="!disablePreBtm()" disabled>pre module</el-button>
+
+          <el-button v-show="disableNextBtn()" @click="editingModuleIndex++"
+            >next module</el-button
+          >
+          <el-button v-show="!disableNextBtn()" disabled>next module</el-button>
         </div>
+
         <div>
           <el-button>discard </el-button>
           <el-button>submit</el-button>
@@ -46,4 +79,9 @@ data.value.intro = listData.value[editingModuleIndex.value].intro;
   </el-form>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss">
+.el-button {
+  margin-left: 0px !important;
+  margin-right: 1rem !important;
+}
+</style>
