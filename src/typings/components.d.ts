@@ -12,7 +12,6 @@ declare module '@vue/runtime-core' {
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCheckbox: typeof import('element-plus/es')['ElCheckbox']
-    ElCheckboxGroup: typeof import('element-plus/es')['ElCheckboxGroup']
     ElContainer: typeof import('element-plus/es')['ElContainer']
     ElDialog: typeof import('element-plus/es')['ElDialog']
     ElDivider: typeof import('element-plus/es')['ElDivider']
@@ -21,9 +20,7 @@ declare module '@vue/runtime-core' {
     ElHeader: typeof import('element-plus/es')['ElHeader']
     ElInput: typeof import('element-plus/es')['ElInput']
     ElMain: typeof import('element-plus/es')['ElMain']
-    ElOption: typeof import('element-plus/es')['ElOption']
     ElScrollbar: typeof import('element-plus/es')['ElScrollbar']
-    ElSelect: typeof import('element-plus/es')['ElSelect']
     ElTable: typeof import('element-plus/es')['ElTable']
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
     IEpDelete: typeof import('~icons/ep/delete')['default']
@@ -46,7 +43,6 @@ declare module '@vue/runtime-core' {
     SearchTrend: typeof import('./../components/SearchTrend.vue')['default']
     SideBar: typeof import('./../components/SideBar.vue')['default']
     SiteSituation: typeof import('./../components/SiteSituation.vue')['default']
-    Test: typeof import('../components/ModuleEdit.vue')['default']
     VisualData: typeof import('./../components/VisualData.vue')['default']
   }
 }
