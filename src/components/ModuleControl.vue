@@ -1,16 +1,31 @@
 <script lang="ts" setup>
 import { storeToRefs } from "pinia";
-import { useModuleListData } from "@/stores/index";
 import ModuleEdit from "./ModuleEdit.vue";
-
-const store = useModuleListData();
-let { listData } = storeToRefs(store);
+import { useModuleListData } from "@/stores/index";
 
 const editModule = ref(false);
 const addModule = ref(false);
 
-const selectedModules = ref([]);
+const store = useModuleListData();
+const { selectedModuleIndexes, editingModuleIndex } = storeToRefs(store);
 
+function resetEditingModuleIndex() {
+  editingModuleIndex.value = 0;
+}
+
+function showEditModule() {
+  if (selectedModuleIndexes.value.length >= 1) {
+    selectedModuleIndexes.value.sort();
+
+    editModule.value = true;
+  } else {
+    ElMessage({
+      type: "warning",
+      message: "尚未选中需修改的模块",
+      duration: 3000,
+    });
+  }
+}
 </script>
 
 <template>
@@ -19,12 +34,17 @@ const selectedModules = ref([]);
     <div class="w-1/2 h-full flex justify-start items-center pl-2">
       <i-ep-Document
         class="mx-3 text-xl opacity-40 cursor-pointer"
-        @click="editModule = true"
+        @click="showEditModule"
       />
 
       <!-- edit module -->
-      <el-dialog v-model="editModule" title="Edit module" width="20%" draggable>
-        <module-edit now-title="123" now-intro="abc"></module-edit>
+      <el-dialog
+        v-model="editModule"
+        title="Edit module"
+        draggable
+        @close="resetEditingModuleIndex"
+      >
+        <module-edit></module-edit>
       </el-dialog>
 
       <i-ep-Delete class="mx-3 text-xl opacity-40 cursor-pointer" />
@@ -34,7 +54,7 @@ const selectedModules = ref([]);
       <el-button class="mr-8 w-20" @click="addModule = true">添加</el-button>
 
       <!-- add module -->
-      <el-dialog v-model="addModule" title="Add module" width="20%" draggable>
+      <el-dialog v-model="addModule" title="Add module" draggable>
         <module-edit></module-edit>
       </el-dialog>
     </div>

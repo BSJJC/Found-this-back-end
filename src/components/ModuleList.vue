@@ -2,13 +2,9 @@
 import { storeToRefs } from "pinia";
 import getModuleList from "@/api/getModuleList";
 import { useModuleListData } from "@/stores/index";
-import type moduleListType from "@/types/moduleListType";
 
 const store = useModuleListData();
-const { listData, selectedModules } = storeToRefs(store);
-
-const temp: Array<number> = [];
-const selectedIndexes = ref(temp);
+const { listData, selectedModuleIndexes } = storeToRefs(store);
 
 getModuleList().then((res) => {
   listData.value = res;
@@ -17,11 +13,9 @@ getModuleList().then((res) => {
 /**
  *  add the selected object to selected modules
  * @param index the index of the selected item
- * @param object the object of the selected object
  */
-function addToSelecteds(index: number, object: moduleListType) {
-  selectedModules.value.push(object);
-  selectedIndexes.value.push(index);
+function addToSelecteds(index: number) {
+  selectedModuleIndexes.value.push(index);
 }
 
 /**
@@ -29,22 +23,18 @@ function addToSelecteds(index: number, object: moduleListType) {
  * @param index the index of the selected item
  */
 function removeFromSelecteds(index: number) {
-  const itemIndex = selectedIndexes.value.indexOf(index);
-  selectedIndexes.value.splice(itemIndex, 1);
-  selectedModules.value.splice(itemIndex, 1);
+  const itemIndex = selectedModuleIndexes.value.indexOf(index);
+  selectedModuleIndexes.value.splice(itemIndex, 1);
 }
 
 /**
  *  add of remove an object into or from selected moduels
  * @param index the index of te selected item
- * @param object the selected object
  */
-function addOrRemove(index: number, object: moduleListType) {
-  console.log(selectedIndexes.value.indexOf(index));
-
-  if (selectedIndexes.value.indexOf(index)) {
+function addOrRemove(index: number) {
+  if (selectedModuleIndexes.value.indexOf(index) === -1) {
     // not in selected indexes
-    addToSelecteds(index, object);
+    addToSelecteds(index);
   } else {
     // already in selected indexes
     removeFromSelecteds(index);
@@ -61,10 +51,7 @@ function addOrRemove(index: number, object: moduleListType) {
           v-for="(i, index) in listData"
           :key="index"
         >
-          <el-checkbox
-            class="w-full pl-4"
-            @change="addOrRemove(index, { title: i.title, intro: i.intro })"
-          >
+          <el-checkbox class="w-full pl-4" @change="addOrRemove(index)">
             <div class="w-full flex flex-row text-xl">
               <div class="w-64 ml-4 truncate transition duration-200">
                 {{ i.title }}

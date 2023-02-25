@@ -11,3 +11,20 @@
 body {
   background-color: #e5e7eb;
 }
+
+.el-message {
+  width: 20rem !important;
+
+  * {
+    font-size: 20px !important;
+  }
+}
+
+.el-dialog {
+  width: 50rem !important;
+  border-radius: 0.75rem !important;
+
+  * {
+    font-size: 20px !important;
+  }
+}
