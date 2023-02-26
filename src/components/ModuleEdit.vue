@@ -1,15 +1,10 @@
 <script lang="ts" setup>
 import { storeToRefs } from "pinia";
 import { useModuleListData } from "@/stores/index";
-import type editModuleType from "@/types/editModuleType";
 
 const store = useModuleListData();
-const {
-  listData,
-  selectedModuleIndexes,
-  editingModuleIndex,
-  editingModuleData,
-} = storeToRefs(store);
+const { selectedModuleIndexes, selectedModuleData, editingModuleIndex } =
+  storeToRefs(store);
 
 function disablePreBtm() {
   if (editingModuleIndex.value !== 0) {
@@ -26,23 +21,10 @@ function disableNextBtn() {
     return false;
   }
 }
-
-function changeEditingData() {
-  editingModuleData.value.title =
-    listData.value[selectedModuleIndexes.value[editingModuleIndex.value]].title;
-  editingModuleData.value.intro =
-    listData.value[selectedModuleIndexes.value[editingModuleIndex.value]].intro;
-}
-
-watch(editingModuleIndex, () => {
-  changeEditingData();
-});
-
-changeEditingData();
 </script>
 
 <template>
-  <el-form label-width="50px" v-model="editingModuleData">
+  <el-form label-width="50px" v-model="selectedModuleData[editingModuleIndex]">
     <el-form-item>
       {{ editingModuleIndex + 1 }}
       /
@@ -50,11 +32,15 @@ changeEditingData();
     </el-form-item>
 
     <el-form-item label="title:">
-      <el-input v-model="editingModuleData.title" />
+      <el-input v-model="selectedModuleData[editingModuleIndex].title" />
     </el-form-item>
 
     <el-form-item label="intro: ">
-      <el-input type="textarea" v-model="editingModuleData.intro" :rows="2" />
+      <el-input
+        type="textarea"
+        v-model="selectedModuleData[editingModuleIndex].intro"
+        :rows="2"
+      />
     </el-form-item>
 
     <el-form-item>
