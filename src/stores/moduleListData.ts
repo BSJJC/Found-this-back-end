@@ -8,5 +8,7 @@ export const useModuleListData = defineStore('moduleListData', {
     selectedModuleData: <moduleListType[]>[],
     editingModuleIndex: 0,
     editingModuleData: <moduleListType>{},
+
+    dataChanged: false
   }),
 });

@@ -3,8 +3,12 @@ import { storeToRefs } from "pinia";
 import { useModuleListData } from "@/stores/index";
 
 const store = useModuleListData();
-const { selectedModuleIndexes, selectedModuleData, editingModuleIndex } =
-  storeToRefs(store);
+const {
+  selectedModuleIndexes,
+  selectedModuleData,
+  editingModuleIndex,
+  dataChanged,
+} = storeToRefs(store);
 
 function disablePreBtm() {
   if (editingModuleIndex.value !== 0) {
@@ -32,7 +36,10 @@ function disableNextBtn() {
     </el-form-item>
 
     <el-form-item label="title:">
-      <el-input v-model="selectedModuleData[editingModuleIndex].title" />
+      <el-input
+        v-model="selectedModuleData[editingModuleIndex].title"
+        @change="dataChanged = true"
+      />
     </el-form-item>
 
     <el-form-item label="intro: ">
@@ -40,6 +47,7 @@ function disableNextBtn() {
         type="textarea"
         v-model="selectedModuleData[editingModuleIndex].intro"
         :rows="2"
+        @change="dataChanged = true"
       />
     </el-form-item>
 

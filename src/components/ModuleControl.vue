@@ -12,6 +12,7 @@ const {
   selectedModuleIndexes,
   selectedModuleData,
   editingModuleIndex,
+  dataChanged,
 } = storeToRefs(store);
 
 function initSelectedModuleData() {
@@ -45,6 +46,22 @@ function resetData() {
 
   initSelectedModuleData();
 }
+
+function test(done: () => void) {
+  if (dataChanged.value) {
+    ElMessageBox.confirm("Discard changed data?")
+      .then(() => {
+        dataChanged.value = false;
+        done();
+      })
+      .catch(() => {
+        console.log("cancel close");
+      });
+  } else {
+    done();
+    dataChanged.value = false;
+  }
+}
 </script>
 
 <template>
@@ -62,6 +79,7 @@ function resetData() {
         title="Edit module"
         draggable
         @open="resetData"
+        :before-close="test"
       >
         <module-edit></module-edit>
       </el-dialog>
