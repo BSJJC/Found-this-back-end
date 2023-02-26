@@ -7,15 +7,28 @@ const editModule = ref(false);
 const addModule = ref(false);
 
 const store = useModuleListData();
-const { selectedModuleIndexes, editingModuleIndex } = storeToRefs(store);
+const {
+  listData,
+  selectedModuleIndexes,
+  selectedModuleData,
+  editingModuleIndex,
+  dataChanged,
+} = storeToRefs(store);
 
-function resetEditingModuleIndex() {
-  editingModuleIndex.value = 0;
+function initSelectedModuleData() {
+  for (let i = 0; i < selectedModuleIndexes.value.length; i++) {
+    const title = listData.value[selectedModuleIndexes.value[i]].title;
+    const intro = listData.value[selectedModuleIndexes.value[i]].intro;
+
+    selectedModuleData.value.push({ title, intro });
+  }
 }
 
 function showEditModule() {
   if (selectedModuleIndexes.value.length >= 1) {
-    selectedModuleIndexes.value.sort();
+    selectedModuleIndexes.value.sort((a, b) => a - b);
+
+    initSelectedModuleData();
 
     editModule.value = true;
   } else {
@@ -24,6 +37,29 @@ function showEditModule() {
       message: "尚未选中需修改的模块",
       duration: 3000,
     });
+  }
+}
+
+function resetData() {
+  editingModuleIndex.value = 0;
+  selectedModuleData.value = [];
+
+  initSelectedModuleData();
+}
+
+function test(done: () => void) {
+  if (dataChanged.value) {
+    ElMessageBox.confirm("Discard changed data?")
+      .then(() => {
+        dataChanged.value = false;
+        done();
+      })
+      .catch(() => {
+        console.log("cancel close");
+      });
+  } else {
+    done();
+    dataChanged.value = false;
   }
 }
 </script>
@@ -42,7 +78,8 @@ function showEditModule() {
         v-model="editModule"
         title="Edit module"
         draggable
-        @close="resetEditingModuleIndex"
+        @open="resetData"
+        :before-close="test"
       >
         <module-edit></module-edit>
       </el-dialog>
