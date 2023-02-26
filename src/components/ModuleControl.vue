@@ -47,7 +47,7 @@ function resetData() {
   initSelectedModuleData();
 }
 
-function test(done: () => void) {
+function closeConfirm(done: () => void) {
   if (dataChanged.value) {
     ElMessageBox.confirm("Discard changed data?")
       .then(() => {
@@ -79,7 +79,7 @@ function test(done: () => void) {
         title="Edit module"
         draggable
         @open="resetData"
-        :before-close="test"
+        :before-close="closeConfirm"
       >
         <module-edit></module-edit>
       </el-dialog>
