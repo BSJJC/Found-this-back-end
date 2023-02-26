@@ -7,15 +7,16 @@ const editModule = ref(false);
 const addModule = ref(false);
 
 const store = useModuleListData();
-const { selectedModuleIndexes, editingModuleIndex } = storeToRefs(store);
-
-function resetEditingModuleIndex() {
-  editingModuleIndex.value = 0;
-}
+const {
+  listData,
+  selectedModuleIndexes,
+  editingModuleIndex,
+  editingModuleData,
+} = storeToRefs(store);
 
 function showEditModule() {
   if (selectedModuleIndexes.value.length >= 1) {
-    selectedModuleIndexes.value.sort();
+    selectedModuleIndexes.value.sort((a, b) => a - b);
 
     editModule.value = true;
   } else {
@@ -25,6 +26,15 @@ function showEditModule() {
       duration: 3000,
     });
   }
+}
+
+function resetData() {
+  editingModuleIndex.value = 0;
+
+  editingModuleData.value.title =
+    listData.value[selectedModuleIndexes.value[editingModuleIndex.value]].title;
+  editingModuleData.value.intro =
+    listData.value[selectedModuleIndexes.value[editingModuleIndex.value]].intro;
 }
 </script>
 
@@ -42,7 +52,7 @@ function showEditModule() {
         v-model="editModule"
         title="Edit module"
         draggable
-        @close="resetEditingModuleIndex"
+        @open="resetData"
       >
         <module-edit></module-edit>
       </el-dialog>
