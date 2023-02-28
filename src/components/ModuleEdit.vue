@@ -25,14 +25,20 @@ function disableNextBtn() {
     return false;
   }
 }
+
+function discardChanges() {}
 </script>
 
 <template>
   <el-form label-width="50px" v-model="selectedModuleData[editingModuleIndex]">
-    <el-form-item>
-      {{ editingModuleIndex + 1 }}
+    <el-form-item v-show="selectedModuleIndexes.length > 1">
+      <div class="min-w-[20px] text-center">
+        {{ editingModuleIndex + 1 }}
+      </div>
       /
-      {{ selectedModuleIndexes.length }}
+      <div class="min-w-[20px] text-center">
+        {{ selectedModuleIndexes.length }}
+      </div>
     </el-form-item>
 
     <el-form-item label="title:">
@@ -53,7 +59,7 @@ function disableNextBtn() {
 
     <el-form-item>
       <div class="w-full h-full p-3 flex flex-row justify-between items-center">
-        <div>
+        <div :style="{ opacity: selectedModuleIndexes.length > 1 ? '1' : '0' }">
           <el-button v-show="disablePreBtm()" @click="editingModuleIndex--"
             >pre module</el-button
           >
@@ -66,7 +72,11 @@ function disableNextBtn() {
         </div>
 
         <div>
-          <el-button>discard </el-button>
+          <el-button v-show="dataChanged" @click="discardChanges"
+            >discard
+          </el-button>
+
+          <el-button v-show="!dataChanged" disabled>discard </el-button>
           <el-button>submit</el-button>
         </div>
       </div>
