@@ -4,6 +4,8 @@ import { useModuleListData } from "@/stores/index";
 
 const store = useModuleListData();
 const {
+  showEditModule,
+  listData,
   selectedModuleIndexes,
   selectedModuleData,
   editingModuleIndex,
@@ -39,7 +41,6 @@ function discardChanges() {
       });
 
       store.initSelectedModuleData();
-
       dataChanged.value = false;
       console.log("all changes discarded");
     })
@@ -51,6 +52,20 @@ function discardChanges() {
 
       console.log("discard canceled");
     });
+}
+
+function mergeData() {
+  selectedModuleIndexes.value.forEach((index) => {
+    listData.value[index] = selectedModuleData.value[index];
+  });
+
+  ElMessage({
+    message: "Data merged",
+    type: "success",
+  });
+
+  dataChanged.value = false;
+  showEditModule.value = false;
 }
 </script>
 
@@ -100,9 +115,10 @@ function discardChanges() {
           <el-button v-show="dataChanged" @click="discardChanges"
             >discard
           </el-button>
-
           <el-button v-show="!dataChanged" disabled>discard </el-button>
-          <el-button>submit</el-button>
+
+          <el-button v-show="dataChanged" @click="mergeData">submit</el-button>
+          <el-button v-show="!dataChanged" disabled>submit</el-button>
         </div>
       </div>
     </el-form-item>

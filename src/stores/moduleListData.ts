@@ -3,6 +3,9 @@ import type moduleListType from "@/types/moduleListType";
 
 export const useModuleListData = defineStore("moduleListData", {
   state: () => ({
+    showEditModule: false,
+    showAddModule: false,
+
     listData: <moduleListType[]>[],
     selectedModuleIndexes: <number[]>[],
     selectedModuleData: <moduleListType[]>[],
