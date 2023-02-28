@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { storeToRefs } from "pinia";
 import { useModuleListData } from "@/stores/index";
+import type { FormInstance } from "element-plus";
 
 const store = useModuleListData();
 const {
@@ -12,6 +13,34 @@ const {
   checkboxGroup,
   dataChanged,
 } = storeToRefs(store);
+
+const ruleFormRef = ref<FormInstance>();
+const ruleForm = reactive({
+  //  title and intro will not be empty
+  title: "placeholder",
+  intro: "placeholder",
+});
+function isEmpty(rule: any, value: any, callback: any) {
+  if (value.length === 0) {
+    callback(new Error("Please input the password"));
+  }
+}
+const rules = reactive({
+  title: [{ validator: isEmpty, trigger: "blur" }],
+  intro: [{ validator: isEmpty, trigger: "blur" }],
+});
+
+function submitForm(formEl: FormInstance | undefined) {
+  if (!formEl) return;
+  formEl.validate((valid) => {
+    if (valid) {
+      console.log("submit!");
+    } else {
+      console.log("error submit!");
+      return false;
+    }
+  });
+}
 
 function disablePreBtm() {
   if (editingModuleIndex.value !== 0) {
@@ -72,7 +101,12 @@ function mergeData() {
 </script>
 
 <template>
-  <el-form label-width="50px">
+  <el-form
+    label-width="50px"
+    ref="ruleFormRef"
+    :model="ruleForm"
+    :rules="rules"
+  >
     <el-form-item v-show="selectedModuleIndexes.length > 1">
       <div class="min-w-[20px] text-center">
         {{ editingModuleIndex + 1 }}
@@ -83,19 +117,29 @@ function mergeData() {
       </div>
     </el-form-item>
 
-    <el-form-item label="title:">
+    <el-form-item label="title:" prop="title">
       <el-input
         v-model="selectedModuleData[editingModuleIndex].title"
-        @input="dataChanged = true"
+        @input="
+          () => {
+            ruleForm.title = selectedModuleData[editingModuleIndex].title;
+            dataChanged = true;
+          }
+        "
       />
     </el-form-item>
 
-    <el-form-item label="intro: ">
+    <el-form-item label="intro: " prop="intro">
       <el-input
         type="textarea"
         v-model="selectedModuleData[editingModuleIndex].intro"
         :rows="2"
-        @input="dataChanged = true"
+        @input="
+          () => {
+            ruleForm.intro = selectedModuleData[editingModuleIndex].intro;
+            dataChanged = true;
+          }
+        "
       />
     </el-form-item>
 
@@ -119,7 +163,9 @@ function mergeData() {
           </el-button>
           <el-button v-show="!dataChanged" disabled>discard </el-button>
 
-          <el-button v-show="dataChanged" @click="mergeData">submit</el-button>
+          <el-button v-show="dataChanged" @click="submitForm(ruleFormRef)"
+            >submit</el-button
+          >
           <el-button v-show="!dataChanged" disabled>submit</el-button>
         </div>
       </div>
