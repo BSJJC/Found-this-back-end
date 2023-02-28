@@ -15,14 +15,14 @@ const {
 } = storeToRefs(store);
 
 const ruleFormRef = ref<FormInstance>();
+
 const ruleForm = reactive({
-  //  title and intro will not be empty
-  title: "placeholder",
-  intro: "placeholder",
+  title: selectedModuleData.value[editingModuleIndex.value].title,
+  intro: selectedModuleData.value[editingModuleIndex.value].intro,
 });
 function isEmpty(rule: any, value: any, callback: any) {
   if (value.length === 0) {
-    callback(new Error("Please input the password"));
+    callback(new Error());
   }
 }
 const rules = reactive({
@@ -37,7 +37,6 @@ function disablePreBtm() {
     return false;
   }
 }
-
 function disableNextBtn() {
   if (editingModuleIndex.value < selectedModuleIndexes.value.length - 1) {
     return true;
@@ -87,6 +86,8 @@ function mergeData() {
   selectedModuleIndexes.value = [];
   dataChanged.value = false;
   showEditModule.value = false;
+  selectedModuleIndexes.value = [];
+  editingModuleIndex.value = 0;
 }
 
 function verifyInput() {

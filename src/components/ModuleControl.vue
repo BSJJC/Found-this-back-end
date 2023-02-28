@@ -54,7 +54,7 @@ function closeConfirm(done: () => void) {
 }
 
 function deleteModule() {
-  if(selectedModuleIndexes.value.length === 0){
+  if (selectedModuleIndexes.value.length === 0) {
   }
 }
 </script>
@@ -75,6 +75,7 @@ function deleteModule() {
         draggable
         @open="resetData"
         :before-close="closeConfirm"
+        destroy-on-close
       >
         <module-edit></module-edit>
       </el-dialog>
