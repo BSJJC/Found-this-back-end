@@ -84,7 +84,7 @@ function mergeData() {
     <el-form-item label="title:">
       <el-input
         v-model="selectedModuleData[editingModuleIndex].title"
-        @change="dataChanged = true"
+        @input="dataChanged = true"
       />
     </el-form-item>
 
@@ -93,13 +93,13 @@ function mergeData() {
         type="textarea"
         v-model="selectedModuleData[editingModuleIndex].intro"
         :rows="2"
-        @change="dataChanged = true"
+        @input="dataChanged = true"
       />
     </el-form-item>
 
     <el-form-item>
-      <div class="w-full h-full p-3 flex flex-row justify-between items-center">
-        <div :style="{ opacity: selectedModuleIndexes.length > 1 ? '1' : '0' }">
+      <div class="w-full min-h-[50px] p-3 relative flex">
+        <div v-show="selectedModuleIndexes.length > 1" class="absolute left-0">
           <el-button v-show="disablePreBtm()" @click="editingModuleIndex--"
             >pre module</el-button
           >
@@ -111,7 +111,7 @@ function mergeData() {
           <el-button v-show="!disableNextBtn()" disabled>next module</el-button>
         </div>
 
-        <div>
+        <div class="absolute right-0">
           <el-button v-show="dataChanged" @click="discardChanges"
             >discard
           </el-button>
