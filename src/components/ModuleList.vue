@@ -4,7 +4,7 @@ import getModuleList from "@/api/getModuleList";
 import { useModuleListData } from "@/stores/index";
 
 const store = useModuleListData();
-const { listData, selectedModuleIndexes } = storeToRefs(store);
+const { listData, selectedModuleIndexes, checkboxGroup } = storeToRefs(store);
 
 getModuleList().then((res) => {
   listData.value = res;
@@ -40,15 +40,6 @@ function addOrRemove(index: number) {
     removeFromSelecteds(index);
   }
 }
-
-interface p {
-  title: string;
-  intro: string;
-}
-
-watch(selectedModuleIndexes, (newVal) => {
-  console.log(newVal);
-});
 </script>
 
 <template>
@@ -56,13 +47,14 @@ watch(selectedModuleIndexes, (newVal) => {
     <div class="w-full h-full p-4 pt-0">
       <el-scrollbar class="pr-3">
         <el-checkbox-group
-          v-model="selectedModuleIndexes"
+          v-model="checkboxGroup"
           class="flex flex-col justify-center items-center w-full h-full pl-2"
         >
           <el-checkbox
             v-for="(i, index) in listData"
             :key="index"
             :label="i.title"
+            @change="addOrRemove(index)"
             class="w-full pl-3 mb-2 border-2 border-gray-200 rounded-lg"
           >
             <div class="w-full flex flex-row text-xl">
