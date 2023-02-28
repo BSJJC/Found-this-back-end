@@ -9,6 +9,7 @@ const {
   selectedModuleIndexes,
   selectedModuleData,
   editingModuleIndex,
+  checkboxGroup,
   dataChanged,
 } = storeToRefs(store);
 
@@ -64,6 +65,7 @@ function mergeData() {
     type: "success",
   });
 
+  checkboxGroup.value = [];
   dataChanged.value = false;
   showEditModule.value = false;
 }
