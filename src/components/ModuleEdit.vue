@@ -30,16 +30,19 @@ const rules = reactive({
   intro: [{ validator: isEmpty, trigger: "blur" }],
 });
 
-function submitForm(formEl: FormInstance | undefined) {
+function verifyForm(formEl: FormInstance | undefined) {
   if (!formEl) return;
   formEl.validate((valid) => {
     if (valid) {
-      console.log("submit!");
+      console.log("Verification successful");
+      return;
     } else {
-      console.log("error submit!");
-      return false;
+      console.log("verification failed");
+      return;
     }
   });
+
+  console.log("2");
 }
 
 function disablePreBtm() {
@@ -85,9 +88,10 @@ function discardChanges() {
 }
 
 function mergeData() {
-  selectedModuleIndexes.value.forEach((index) => {
-    listData.value[index] = selectedModuleData.value[index];
-  });
+  for (let i = 0; i < selectedModuleIndexes.value.length; i++) {
+    listData.value[selectedModuleIndexes.value[i]] =
+      selectedModuleData.value[i];
+  }
 
   ElMessage({
     message: "Data merged",
@@ -95,6 +99,7 @@ function mergeData() {
   });
 
   checkboxGroup.value = [];
+  selectedModuleIndexes.value = [];
   dataChanged.value = false;
   showEditModule.value = false;
 }
@@ -163,9 +168,8 @@ function mergeData() {
           </el-button>
           <el-button v-show="!dataChanged" disabled>discard </el-button>
 
-          <el-button v-show="dataChanged" @click="submitForm(ruleFormRef)"
-            >submit</el-button
-          >
+          <!-- <el-button v-show="dataChanged" @click="verifyForm(ruleFormRef)" -->
+          <el-button v-show="dataChanged" @click="mergeData">submit</el-button>
           <el-button v-show="!dataChanged" disabled>submit</el-button>
         </div>
       </div>
