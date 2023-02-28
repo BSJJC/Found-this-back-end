@@ -174,7 +174,6 @@ function verifyInput() {
             >discard
           </el-button>
 
-          <!-- <el-button v-show="dataChanged" @click="verifyForm(ruleFormRef)" -->
           <el-button v-show="dataChanged && verifyInput()" @click="mergeData"
             >submit</el-button
           >
@@ -189,7 +188,7 @@ function verifyInput() {
 
 <style lang="scss" scoped>
 .el-button {
-  margin-left: 0px !important;
-  margin-right: 1rem !important;
+  margin-left: 0.5rem !important;
+  margin-right: 0.5rem !important;
 }
 </style>
