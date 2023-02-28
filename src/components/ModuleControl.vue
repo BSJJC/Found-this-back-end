@@ -8,27 +8,17 @@ const addModule = ref(false);
 
 const store = useModuleListData();
 const {
-  listData,
   selectedModuleIndexes,
   selectedModuleData,
   editingModuleIndex,
   dataChanged,
 } = storeToRefs(store);
 
-function initSelectedModuleData() {
-  for (let i = 0; i < selectedModuleIndexes.value.length; i++) {
-    const title = listData.value[selectedModuleIndexes.value[i]].title;
-    const intro = listData.value[selectedModuleIndexes.value[i]].intro;
-
-    selectedModuleData.value.push({ title, intro });
-  }
-}
-
 function showEditModule() {
   if (selectedModuleIndexes.value.length >= 1) {
     selectedModuleIndexes.value.sort((a, b) => a - b);
 
-    initSelectedModuleData();
+    store.initSelectedModuleData();
 
     editModule.value = true;
   } else {
@@ -44,7 +34,7 @@ function resetData() {
   editingModuleIndex.value = 0;
   selectedModuleData.value = [];
 
-  initSelectedModuleData();
+  store.initSelectedModuleData();
 }
 
 function closeConfirm(done: () => void) {

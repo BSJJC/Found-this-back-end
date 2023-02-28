@@ -26,11 +26,36 @@ function disableNextBtn() {
   }
 }
 
-function discardChanges() {}
+function discardChanges() {
+  ElMessageBox.confirm("Discard all changes?", "Warning", {
+    confirmButtonText: "OK",
+    cancelButtonText: "Cancel",
+    type: "warning",
+  })
+    .then(() => {
+      ElMessage({
+        type: "success",
+        message: "Changes discarded",
+      });
+
+      store.initSelectedModuleData();
+
+      dataChanged.value = false;
+      console.log("all changes discarded");
+    })
+    .catch(() => {
+      ElMessage({
+        type: "info",
+        message: "Discard canceled",
+      });
+
+      console.log("discard canceled");
+    });
+}
 </script>
 
 <template>
-  <el-form label-width="50px" v-model="selectedModuleData[editingModuleIndex]">
+  <el-form label-width="50px">
     <el-form-item v-show="selectedModuleIndexes.length > 1">
       <div class="min-w-[20px] text-center">
         {{ editingModuleIndex + 1 }}
