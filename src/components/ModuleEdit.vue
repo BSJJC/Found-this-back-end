@@ -2,6 +2,7 @@
 import { storeToRefs } from "pinia";
 import { useModuleListData } from "@/stores/index";
 import type { FormInstance } from "element-plus";
+import { e } from "vitest/dist/index-5aad25c1";
 
 const store = useModuleListData();
 const {
@@ -29,19 +30,6 @@ const rules = reactive({
   title: [{ validator: isEmpty, trigger: "blur" }],
   intro: [{ validator: isEmpty, trigger: "blur" }],
 });
-
-function verifyForm(formEl: FormInstance | undefined) {
-  if (!formEl) return;
-  formEl.validate((valid) => {
-    if (valid) {
-      console.log("Verification successful");
-      return;
-    } else {
-      console.log("verification failed");
-      return;
-    }
-  });
-}
 
 function disablePreBtm() {
   if (editingModuleIndex.value !== 0) {
@@ -101,6 +89,14 @@ function mergeData() {
   dataChanged.value = false;
   showEditModule.value = false;
 }
+
+function verifyInput() {
+  if (ruleForm.title.length === 0 || ruleForm.intro.length === 0) {
+    return false;
+  } else {
+    return true;
+  }
+}
 </script>
 
 <template>
@@ -149,26 +145,42 @@ function mergeData() {
     <el-form-item>
       <div class="w-full min-h-[50px] p-3 relative flex">
         <div v-show="selectedModuleIndexes.length > 1" class="absolute left-0">
-          <el-button v-show="disablePreBtm()" @click="editingModuleIndex--"
+          <el-button
+            v-show="disablePreBtm() && verifyInput()"
+            @click="editingModuleIndex--"
             >pre module</el-button
           >
-          <el-button v-show="!disablePreBtm()" disabled>pre module</el-button>
+          <el-button v-show="!disablePreBtm() || !verifyInput()" disabled
+            >pre module</el-button
+          >
 
-          <el-button v-show="disableNextBtn()" @click="editingModuleIndex++"
+          <el-button
+            v-show="disableNextBtn() && verifyInput()"
+            @click="editingModuleIndex++"
             >next module</el-button
           >
-          <el-button v-show="!disableNextBtn()" disabled>next module</el-button>
+          <el-button v-show="!disableNextBtn() || !verifyInput()" disabled
+            >next module</el-button
+          >
         </div>
 
         <div class="absolute right-0">
-          <el-button v-show="dataChanged" @click="discardChanges"
+          <el-button
+            v-show="dataChanged && verifyInput()"
+            @click="discardChanges"
             >discard
           </el-button>
-          <el-button v-show="!dataChanged" disabled>discard </el-button>
+          <el-button v-show="!dataChanged || !verifyInput()" disabled
+            >discard
+          </el-button>
 
           <!-- <el-button v-show="dataChanged" @click="verifyForm(ruleFormRef)" -->
-          <el-button v-show="dataChanged" @click="mergeData">submit</el-button>
-          <el-button v-show="!dataChanged" disabled>submit</el-button>
+          <el-button v-show="dataChanged && verifyInput()" @click="mergeData"
+            >submit</el-button
+          >
+          <el-button v-show="!dataChanged || !verifyInput()" disabled
+            >submit</el-button
+          >
         </div>
       </div>
     </el-form-item>
