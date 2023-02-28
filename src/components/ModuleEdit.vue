@@ -41,8 +41,6 @@ function verifyForm(formEl: FormInstance | undefined) {
       return;
     }
   });
-
-  console.log("2");
 }
 
 function disablePreBtm() {
