@@ -3,34 +3,23 @@ import { storeToRefs } from "pinia";
 import ModuleEdit from "./ModuleEdit.vue";
 import { useModuleListData } from "@/stores/index";
 
-const editModule = ref(false);
-const addModule = ref(false);
-
 const store = useModuleListData();
 const {
-  listData,
+  showEditModule,
+  showAddModule,
   selectedModuleIndexes,
   selectedModuleData,
   editingModuleIndex,
   dataChanged,
 } = storeToRefs(store);
 
-function initSelectedModuleData() {
-  for (let i = 0; i < selectedModuleIndexes.value.length; i++) {
-    const title = listData.value[selectedModuleIndexes.value[i]].title;
-    const intro = listData.value[selectedModuleIndexes.value[i]].intro;
-
-    selectedModuleData.value.push({ title, intro });
-  }
-}
-
-function showEditModule() {
+function openModuleEdit() {
   if (selectedModuleIndexes.value.length >= 1) {
     selectedModuleIndexes.value.sort((a, b) => a - b);
 
-    initSelectedModuleData();
+    store.initSelectedModuleData();
 
-    editModule.value = true;
+    showEditModule.value = true;
   } else {
     ElMessage({
       type: "warning",
@@ -44,7 +33,7 @@ function resetData() {
   editingModuleIndex.value = 0;
   selectedModuleData.value = [];
 
-  initSelectedModuleData();
+  store.initSelectedModuleData();
 }
 
 function closeConfirm(done: () => void) {
@@ -70,12 +59,12 @@ function closeConfirm(done: () => void) {
     <div class="w-1/2 h-full flex justify-start items-center pl-2">
       <i-ep-Document
         class="mx-3 text-xl opacity-40 cursor-pointer"
-        @click="showEditModule"
+        @click="openModuleEdit"
       />
 
       <!-- edit module -->
       <el-dialog
-        v-model="editModule"
+        v-model="showEditModule"
         title="Edit module"
         draggable
         @open="resetData"
@@ -88,10 +77,12 @@ function closeConfirm(done: () => void) {
     </div>
     <!-- module add button -->
     <div class="flex justify-center items-center pr-5">
-      <el-button class="mr-8 w-20" @click="addModule = true">添加</el-button>
+      <el-button class="mr-8 w-20" @click="showAddModule = true"
+        >添加</el-button
+      >
 
       <!-- add module -->
-      <el-dialog v-model="addModule" title="Add module" draggable>
+      <el-dialog v-model="showAddModule" title="Add module" draggable>
         <module-edit></module-edit>
       </el-dialog>
     </div>

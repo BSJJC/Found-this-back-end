@@ -1,14 +1,47 @@
 <script lang="ts" setup>
 import { storeToRefs } from "pinia";
 import { useModuleListData } from "@/stores/index";
+import type { FormInstance } from "element-plus";
 
 const store = useModuleListData();
 const {
+  showEditModule,
+  listData,
   selectedModuleIndexes,
   selectedModuleData,
   editingModuleIndex,
+  checkboxGroup,
   dataChanged,
 } = storeToRefs(store);
+
+const ruleFormRef = ref<FormInstance>();
+const ruleForm = reactive({
+  //  title and intro will not be empty
+  title: "placeholder",
+  intro: "placeholder",
+});
+function isEmpty(rule: any, value: any, callback: any) {
+  if (value.length === 0) {
+    callback(new Error("Please input the password"));
+  }
+}
+const rules = reactive({
+  title: [{ validator: isEmpty, trigger: "blur" }],
+  intro: [{ validator: isEmpty, trigger: "blur" }],
+});
+
+function verifyForm(formEl: FormInstance | undefined) {
+  if (!formEl) return;
+  formEl.validate((valid) => {
+    if (valid) {
+      console.log("Verification successful");
+      return;
+    } else {
+      console.log("verification failed");
+      return;
+    }
+  });
+}
 
 function disablePreBtm() {
   if (editingModuleIndex.value !== 0) {
@@ -25,35 +58,97 @@ function disableNextBtn() {
     return false;
   }
 }
+
+function discardChanges() {
+  ElMessageBox.confirm("Discard all changes?", "Warning", {
+    confirmButtonText: "OK",
+    cancelButtonText: "Cancel",
+    type: "warning",
+  })
+    .then(() => {
+      ElMessage({
+        type: "success",
+        message: "Changes discarded",
+      });
+
+      store.initSelectedModuleData();
+      dataChanged.value = false;
+      console.log("all changes discarded");
+    })
+    .catch(() => {
+      ElMessage({
+        type: "info",
+        message: "Discard canceled",
+      });
+
+      console.log("discard canceled");
+    });
+}
+
+function mergeData() {
+  for (let i = 0; i < selectedModuleIndexes.value.length; i++) {
+    listData.value[selectedModuleIndexes.value[i]] =
+      selectedModuleData.value[i];
+  }
+
+  ElMessage({
+    message: "Data merged",
+    type: "success",
+  });
+
+  checkboxGroup.value = [];
+  selectedModuleIndexes.value = [];
+  dataChanged.value = false;
+  showEditModule.value = false;
+}
 </script>
 
 <template>
-  <el-form label-width="50px" v-model="selectedModuleData[editingModuleIndex]">
-    <el-form-item>
-      {{ editingModuleIndex + 1 }}
+  <el-form
+    label-width="50px"
+    ref="ruleFormRef"
+    :model="ruleForm"
+    :rules="rules"
+  >
+    <el-form-item v-show="selectedModuleIndexes.length > 1">
+      <div class="min-w-[20px] text-center">
+        {{ editingModuleIndex + 1 }}
+      </div>
       /
-      {{ selectedModuleIndexes.length }}
+      <div class="min-w-[20px] text-center">
+        {{ selectedModuleIndexes.length }}
+      </div>
     </el-form-item>
 
-    <el-form-item label="title:">
+    <el-form-item label="title:" prop="title">
       <el-input
         v-model="selectedModuleData[editingModuleIndex].title"
-        @change="dataChanged = true"
+        @input="
+          () => {
+            ruleForm.title = selectedModuleData[editingModuleIndex].title;
+            dataChanged = true;
+          }
+        "
       />
     </el-form-item>
 
-    <el-form-item label="intro: ">
+    <el-form-item label="intro: " prop="intro">
       <el-input
         type="textarea"
         v-model="selectedModuleData[editingModuleIndex].intro"
         :rows="2"
-        @change="dataChanged = true"
+        @input="
+          () => {
+            ruleForm.intro = selectedModuleData[editingModuleIndex].intro;
+            dataChanged = true;
+          }
+        "
       />
     </el-form-item>
 
     <el-form-item>
-      <div class="w-full h-full p-3 flex flex-row justify-between items-center">
-        <div>
+      <div class="w-full min-h-[50px] p-3 relative flex">
+        <div v-show="selectedModuleIndexes.length > 1" class="absolute left-0">
           <el-button v-show="disablePreBtm()" @click="editingModuleIndex--"
             >pre module</el-button
           >
@@ -65,9 +160,15 @@ function disableNextBtn() {
           <el-button v-show="!disableNextBtn()" disabled>next module</el-button>
         </div>
 
-        <div>
-          <el-button>discard </el-button>
-          <el-button>submit</el-button>
+        <div class="absolute right-0">
+          <el-button v-show="dataChanged" @click="discardChanges"
+            >discard
+          </el-button>
+          <el-button v-show="!dataChanged" disabled>discard </el-button>
+
+          <!-- <el-button v-show="dataChanged" @click="verifyForm(ruleFormRef)" -->
+          <el-button v-show="dataChanged" @click="mergeData">submit</el-button>
+          <el-button v-show="!dataChanged" disabled>submit</el-button>
         </div>
       </div>
     </el-form-item>

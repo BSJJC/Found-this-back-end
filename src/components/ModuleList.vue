@@ -4,7 +4,7 @@ import getModuleList from "@/api/getModuleList";
 import { useModuleListData } from "@/stores/index";
 
 const store = useModuleListData();
-const { listData, selectedModuleIndexes } = storeToRefs(store);
+const { listData, selectedModuleIndexes, checkboxGroup } = storeToRefs(store);
 
 getModuleList().then((res) => {
   listData.value = res;
@@ -46,12 +46,17 @@ function addOrRemove(index: number) {
   <div class="w-full h-full pt-0">
     <div class="w-full h-full p-4 pt-0">
       <el-scrollbar class="pr-3">
-        <div
-          class="w-full h-12 mb-4 flex justify-center items-center border-2 border-gray-200 rounded-lg"
-          v-for="(i, index) in listData"
-          :key="index"
+        <el-checkbox-group
+          v-model="checkboxGroup"
+          class="flex flex-col justify-center items-center w-full h-full pl-2"
         >
-          <el-checkbox class="w-full pl-4" @change="addOrRemove(index)">
+          <el-checkbox
+            v-for="(i, index) in listData"
+            :key="index"
+            :label="i.title"
+            @change="addOrRemove(index)"
+            class="w-full pl-3 mb-2 border-2 border-gray-200 rounded-lg"
+          >
             <div class="w-full flex flex-row text-xl">
               <div class="w-64 ml-4 truncate transition duration-200">
                 {{ i.title }}
@@ -61,13 +66,18 @@ function addOrRemove(index: number) {
               </div>
             </div>
           </el-checkbox>
-        </div>
+        </el-checkbox-group>
       </el-scrollbar>
     </div>
   </div>
 </template>
 
 <style lang="scss">
+.el-checkbox {
+  margin-right: 10px !important;
+  height: 50px !important;
+}
+
 .el-checkbox__input {
   transform: scale(1.6);
 }
