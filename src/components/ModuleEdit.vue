@@ -2,7 +2,6 @@
 import { storeToRefs } from "pinia";
 import { useModuleListData } from "@/stores/index";
 import type { FormInstance } from "element-plus";
-import { e } from "vitest/dist/index-5aad25c1";
 
 const store = useModuleListData();
 const {

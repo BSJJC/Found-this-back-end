@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { storeToRefs } from "pinia";
 import ModuleEdit from "./ModuleEdit.vue";
+import ModuleAdd from "./ModuleAdd.vue";
 import { useModuleListData } from "@/stores/index";
 
 const store = useModuleListData();
@@ -51,6 +52,11 @@ function closeConfirm(done: () => void) {
     dataChanged.value = false;
   }
 }
+
+function deleteModule() {
+  if(selectedModuleIndexes.value.length === 0){
+  }
+}
 </script>
 
 <template>
@@ -73,7 +79,10 @@ function closeConfirm(done: () => void) {
         <module-edit></module-edit>
       </el-dialog>
 
-      <i-ep-Delete class="mx-3 text-xl opacity-40 cursor-pointer" />
+      <i-ep-Delete
+        class="mx-3 text-xl opacity-40 cursor-pointer"
+        @click="deleteModule"
+      />
     </div>
     <!-- module add button -->
     <div class="flex justify-center items-center pr-5">
@@ -83,7 +92,7 @@ function closeConfirm(done: () => void) {
 
       <!-- add module -->
       <el-dialog v-model="showAddModule" title="Add module" draggable>
-        <module-edit></module-edit>
+        <module-add></module-add>
       </el-dialog>
     </div>
   </div>
