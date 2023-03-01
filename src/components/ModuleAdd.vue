@@ -4,15 +4,7 @@ import { useModuleListData } from "@/stores/index";
 import type { FormInstance } from "element-plus";
 
 const store = useModuleListData();
-const {
-  showEditModule,
-  listData,
-  selectedModuleIndexes,
-  selectedModuleData,
-  editingModuleIndex,
-  checkboxGroup,
-  dataChanged,
-} = storeToRefs(store);
+const { showAddModule, listData } = storeToRefs(store);
 
 const ruleFormRef = ref<FormInstance>();
 
@@ -31,7 +23,7 @@ const rules = reactive({
 });
 
 function resetData() {
-  ElMessageBox.confirm("Discard all changes?", "Warning", {
+  ElMessageBox.confirm("Discard all data?", "Warning", {
     confirmButtonText: "OK",
     cancelButtonText: "Cancel",
     type: "warning",
@@ -39,11 +31,11 @@ function resetData() {
     .then(() => {
       ElMessage({
         type: "success",
-        message: "Changes discarded",
+        message: "Data discarded",
       });
 
-      store.initSelectedModuleData();
-      dataChanged.value = false;
+      ruleForm.title = "";
+      ruleForm.intro = "";
       console.log("all changes discarded");
     })
     .catch(() => {
@@ -51,17 +43,19 @@ function resetData() {
         type: "info",
         message: "Discard canceled",
       });
-
       console.log("discard canceled");
     });
 }
 
-function verifyInput() {
-  if (ruleForm.title.length === 0 || ruleForm.intro.length === 0) {
-    return false;
-  } else {
-    return true;
-  }
+function addData() {
+  listData.value.push(ruleForm);
+
+  ElMessage({
+    type: "success",
+    message: "Module added",
+  });
+
+  showAddModule.value = false;
 }
 </script>
 
@@ -84,25 +78,20 @@ function verifyInput() {
       <div class="w-full min-h-[50px] p-3 relative flex">
         <div class="absolute right-0">
           <el-button
-            v-show="dataChanged && verifyInput()"
             @click="resetData"
             type="danger"
-            >clear
-          </el-button>
-          <el-button
-            v-show="!dataChanged || !verifyInput()"
-            type="danger"
-            disabled
+            :disabled="
+              ruleForm.title.length === 0 && ruleForm.intro.length === 0
+            "
             >clear
           </el-button>
 
-          <el-button v-show="dataChanged && verifyInput()" type="success"
-            >add</el-button
-          >
           <el-button
-            v-show="!dataChanged || !verifyInput()"
+            @click="addData"
             type="success"
-            disabled
+            :disabled="
+              ruleForm.title.length === 0 || ruleForm.intro.length === 0
+            "
             >add</el-button
           >
         </div>
@@ -110,10 +99,3 @@ function verifyInput() {
     </el-form-item>
   </el-form>
 </template>
-
-<style lang="scss" scoped>
-.el-button {
-  margin-left: 0.5rem !important;
-  margin-right: 0.5rem !important;
-}
-</style>
