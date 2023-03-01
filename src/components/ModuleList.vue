@@ -44,7 +44,7 @@ function addOrRemove(index: number) {
         <transition-group name="fade-right">
           <div
             v-for="(i, index) in listData"
-            :key="index"
+            :key="listData[index] as unknown as string"
             class="w-full h-12 mb-2 grid gap-4 grid-cols-12 border-2 rounded-lg cursor-pointer"
             :style="{
               borderColor: checkboxGroup[index] ? '#409eff' : '#E5E7EB',
@@ -80,23 +80,5 @@ function addOrRemove(index: number) {
 <style lang="scss">
 .el-checkbox {
   transform: scale(1.6) !important;
-}
-
-.fade-right-move,
-.fade-right-enter-active,
-.fade-right-leave-active {
-  transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);
-}
-
-.fade-right-enter-from,
-.fade-right-leave-to {
-  opacity: 0;
-  transform: translateX(20px);
-}
-
-.fade-right-enter-to,
-.fade-right-leave-from {
-  opacity: 1;
-  transform: translateX(0px);
 }
 </style>

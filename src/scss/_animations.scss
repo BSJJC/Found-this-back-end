@@ -16,3 +16,19 @@
   transform: translateX(20px);
   opacity: 0;
 }
+
+.fade-right-move,
+.fade-right-enter-active,
+.fade-right-leave-active {
+  transition: all 0.3s ease-in-out;
+}
+
+.fade-right-enter-from,
+.fade-right-leave-to {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.fade-right-leave-active {
+  position: absolute;
+}
