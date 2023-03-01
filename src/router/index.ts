@@ -1,9 +1,7 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import LogInVue from '@/views/LogIn.vue';
-import Home from '@/views/Home.vue';
+import { createRouter, createWebHistory } from "vue-router";
 
-import OverViewVue from '@/components/OverView.vue';
-import ModuleManagementVue from '@/components/ModuleManagement.vue';
+import OverView from "@/components/OverView.vue";
+import ModuleManagement from "@/components/ModuleManagement.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -11,26 +9,26 @@ const router = createRouter({
     {
       path: "/",
       name: "LogIn",
-      component: LogInVue,
+      component: () => import("@/views/LogIn.vue"),
     },
     {
       path: "/home/",
       name: "Home",
-      component: Home,
+      component: () => import("@/views/Home.vue"),
       children: [
         {
           path: "overView",
           name: "overView",
-          component: OverViewVue
+          component: OverView,
         },
         {
           path: "moduleManagement",
           name: "moduleManagement",
-          component: ModuleManagementVue
+          component: ModuleManagement,
         },
-      ]
-    }
-  ]
-})
+      ],
+    },
+  ],
+});
 
-export default router
+export default router;
