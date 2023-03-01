@@ -1,5 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
 
+import LogIn from "@/views/LogIn.vue";
+import Home from "@/views/Home.vue";
+
 import OverView from "@/components/OverView.vue";
 import ModuleManagement from "@/components/ModuleManagement.vue";
 
@@ -9,12 +12,12 @@ const router = createRouter({
     {
       path: "/",
       name: "LogIn",
-      component: () => import("@/views/LogIn.vue"),
+      component: LogIn,
     },
     {
       path: "/home/",
       name: "Home",
-      component: () => import("@/views/Home.vue"),
+      component: Home,
       children: [
         {
           path: "overView",

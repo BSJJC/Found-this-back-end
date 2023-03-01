@@ -2,6 +2,7 @@
 import { storeToRefs } from "pinia";
 import { useModuleListData } from "@/stores/index";
 import type { FormInstance } from "element-plus";
+import { ElMessage, ElMessageBox } from "element-plus";
 
 const store = useModuleListData();
 const { showAddModule, listData } = storeToRefs(store);
