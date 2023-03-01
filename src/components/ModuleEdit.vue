@@ -148,18 +148,26 @@ function verifyInput() {
           <el-button
             v-show="disablePreBtm() && verifyInput()"
             @click="editingModuleIndex--"
+            type="info"
             >pre module</el-button
           >
-          <el-button v-show="!disablePreBtm() || !verifyInput()" disabled
+          <el-button
+            v-show="!disablePreBtm() || !verifyInput()"
+            type="info"
+            disabled
             >pre module</el-button
           >
 
           <el-button
             v-show="disableNextBtn() && verifyInput()"
             @click="editingModuleIndex++"
+            type="info"
             >next module</el-button
           >
-          <el-button v-show="!disableNextBtn() || !verifyInput()" disabled
+          <el-button
+            v-show="!disableNextBtn() || !verifyInput()"
+            type="info"
+            disabled
             >next module</el-button
           >
         </div>
@@ -168,16 +176,26 @@ function verifyInput() {
           <el-button
             v-show="dataChanged && verifyInput()"
             @click="discardChanges"
+            type="danger"
             >discard
           </el-button>
-          <el-button v-show="!dataChanged || !verifyInput()" disabled
+          <el-button
+            v-show="!dataChanged || !verifyInput()"
+            type="danger"
+            disabled
             >discard
           </el-button>
 
-          <el-button v-show="dataChanged && verifyInput()" @click="mergeData"
+          <el-button
+            v-show="dataChanged && verifyInput()"
+            @click="mergeData"
+            type="success"
             >submit</el-button
           >
-          <el-button v-show="!dataChanged || !verifyInput()" disabled
+          <el-button
+            v-show="!dataChanged || !verifyInput()"
+            type="success"
+            disabled
             >submit</el-button
           >
         </div>
