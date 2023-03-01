@@ -24,8 +24,8 @@ function removeFromSelecteds(index: number) {
   selectedModuleIndexes.value.splice(itemIndex, 1);
 }
 
-function addOrRemove(_index: { title: string; intro: string }) {
-  const index = listData.value.indexOf(_index);
+function addOrRemove(index: number) {
+  checkboxGroup.value[index] = !checkboxGroup.value[index];
 
   if (selectedModuleIndexes.value.indexOf(index) === -1) {
     // not in selected indexes
@@ -50,7 +50,7 @@ function addOrRemove(_index: { title: string; intro: string }) {
               borderColor: checkboxGroup[index] ? '#409eff' : '#E5E7EB',
               color: checkboxGroup[index] ? '#409eff' : 'black',
             }"
-            @click="checkboxGroup[index] = !checkboxGroup[index]"
+            @click="addOrRemove(index)"
           >
             <div class="grid-col-1 flex justify-center items-center pr-2">
               <el-checkbox v-model="checkboxGroup[index]" />

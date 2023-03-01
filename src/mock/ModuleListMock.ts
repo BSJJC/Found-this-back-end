@@ -7,8 +7,8 @@ const getModuleListMock = Mock.mock(
     return Mock.mock({
       "arr|10-40": [
         {
-          "title": "@title",
-          "intro": "@sentence"
+          "title": "@ctitle",
+          "intro": "@csentence"
         }
       ]
     })

@@ -13,6 +13,7 @@ const {
   selectedModuleData,
   editingModuleIndex,
   dataChanged,
+  checkboxGroup,
 } = storeToRefs(store);
 
 function openModuleEdit() {
@@ -77,6 +78,7 @@ function deleteModule() {
 
         for (let i = selectedModuleIndexes.value.length; i--; i >= 0) {
           listData.value.splice(selectedModuleIndexes.value[i], 1);
+          checkboxGroup.value.splice(selectedModuleIndexes.value[i], 1);
         }
         selectedModuleIndexes.value = [];
 
