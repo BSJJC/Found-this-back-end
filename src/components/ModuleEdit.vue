@@ -146,56 +146,32 @@ function verifyInput() {
       <div class="w-full min-h-[50px] p-3 relative flex">
         <div v-show="selectedModuleIndexes.length > 1" class="absolute left-0">
           <el-button
-            v-show="disablePreBtm() && verifyInput()"
             @click="editingModuleIndex--"
             type="info"
-            >pre module</el-button
-          >
-          <el-button
-            v-show="!disablePreBtm() || !verifyInput()"
-            type="info"
-            disabled
+            :disabled="!disablePreBtm() || !verifyInput()"
             >pre module</el-button
           >
 
           <el-button
-            v-show="disableNextBtn() && verifyInput()"
             @click="editingModuleIndex++"
             type="info"
-            >next module</el-button
-          >
-          <el-button
-            v-show="!disableNextBtn() || !verifyInput()"
-            type="info"
-            disabled
+            :disabled="!disableNextBtn() || !verifyInput()"
             >next module</el-button
           >
         </div>
 
         <div class="absolute right-0">
           <el-button
-            v-show="dataChanged && verifyInput()"
             @click="discardChanges"
             type="danger"
-            >discard
-          </el-button>
-          <el-button
-            v-show="!dataChanged || !verifyInput()"
-            type="danger"
-            disabled
+            :disabled="!dataChanged || !verifyInput()"
             >discard
           </el-button>
 
           <el-button
-            v-show="dataChanged && verifyInput()"
+            type="success"
+            :disabled="!dataChanged || !verifyInput()"
             @click="mergeData"
-            type="success"
-            >submit</el-button
-          >
-          <el-button
-            v-show="!dataChanged || !verifyInput()"
-            type="success"
-            disabled
             >submit</el-button
           >
         </div>
@@ -203,10 +179,3 @@ function verifyInput() {
     </el-form-item>
   </el-form>
 </template>
-
-<style lang="scss" scoped>
-.el-button {
-  margin-left: 0.5rem !important;
-  margin-right: 0.5rem !important;
-}
-</style>

@@ -131,7 +131,13 @@ function deleteModule() {
       >
 
       <!-- add module -->
-      <el-dialog v-model="showAddModule" title="Add module" draggable>
+      <el-dialog
+        v-model="showAddModule"
+        title="Add module"
+        draggable
+        destroy-on-close
+        align-center
+      >
         <module-add></module-add>
       </el-dialog>
     </div>
