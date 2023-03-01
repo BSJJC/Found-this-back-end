@@ -35,27 +35,14 @@ function addOrRemove(_index: { title: string; intro: string }) {
     removeFromSelecteds(index);
   }
 }
-
-const items = ref([0]);
-
-for (let i = 1; 1 < 100; i++) {
-  items.value.push(i);
-}
-
-function remove(item: number) {
-  const i = items.value.indexOf(item);
-  if (i > -1) {
-    items.value.splice(i, 1);
-  }
-}
 </script>
 
 <template>
   <div class="w-full h-full pt-0">
     <div class="w-full h-full p-4 pt-0">
-      <el-scrollbar class="pr-3 h-full">
+      <el-scrollbar class="pr-3">
         <transition-group name="fade-right">
-          <!-- <div
+          <div
             v-for="(i, index) in listData"
             :key="index"
             class="w-full h-12 mb-2 grid gap-4 grid-cols-12 border-2 rounded-lg cursor-pointer"
@@ -83,10 +70,6 @@ function remove(item: number) {
                 {{ i.intro }}
               </div>
             </div>
-          </div> -->
-          <div v-for="item in items" :key="item">
-            {{ item }}
-            <button @click="remove(item)">x</button>
           </div>
         </transition-group>
       </el-scrollbar>
@@ -99,23 +82,21 @@ function remove(item: number) {
   transform: scale(1.6) !important;
 }
 
-/* 1. 声明过渡效果 */
 .fade-right-move,
 .fade-right-enter-active,
 .fade-right-leave-active {
   transition: all 0.5s cubic-bezier(0.55, 0, 0.1, 1);
 }
 
-/* 2. 声明进入和离开的状态 */
 .fade-right-enter-from,
 .fade-right-leave-to {
   opacity: 0;
-  transform: scaleY(0.01) translate(30px, 0);
+  transform: translateX(20px);
 }
 
-/* 3. 确保离开的项目被移除出了布局流
-      以便正确地计算移动时的动画效果。 */
-.fade-right-leave-active {
-  position: absolute;
+.fade-right-enter-to,
+.fade-right-leave-from {
+  opacity: 1;
+  transform: translateX(0px);
 }
 </style>
