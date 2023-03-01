@@ -10,7 +10,7 @@ export const useModuleListData = defineStore("moduleListData", {
     selectedModuleIndexes: <number[]>[],
     selectedModuleData: <moduleListType[]>[],
     editingModuleIndex: 0,
-    checkboxGroup: <number[]>[],
+    checkboxGroup: <boolean[]>[],
     dataChanged: false,
   }),
 
