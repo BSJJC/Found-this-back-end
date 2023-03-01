@@ -6,6 +6,7 @@ import { useModuleListData } from "@/stores/index";
 
 const store = useModuleListData();
 const {
+  listData,
   showEditModule,
   showAddModule,
   selectedModuleIndexes,
@@ -24,7 +25,7 @@ function openModuleEdit() {
   } else {
     ElMessage({
       type: "warning",
-      message: "尚未选中需修改的模块",
+      message: "No module selected for modification",
       duration: 3000,
     });
   }
@@ -55,6 +56,41 @@ function closeConfirm(done: () => void) {
 
 function deleteModule() {
   if (selectedModuleIndexes.value.length === 0) {
+    ElMessage({
+      message: "Please check the modules to delete.",
+      type: "warning",
+    });
+  } else {
+    ElMessageBox.confirm(
+      "Are you sure to delete the selected modules?",
+      "Warning",
+      {
+        confirmButtonText: "OK",
+        cancelButtonText: "Cancel",
+        type: "warning",
+      }
+    )
+      .then(() => {
+        selectedModuleIndexes.value = selectedModuleIndexes.value.sort(
+          (a, b) => a - b
+        );
+
+        for (let i = selectedModuleIndexes.value.length; i--; i >= 0) {
+          listData.value.splice(selectedModuleIndexes.value[i], 1);
+        }
+        selectedModuleIndexes.value = [];
+
+        ElMessage({
+          type: "success",
+          message: "Module deleted",
+        });
+      })
+      .catch(() => {
+        ElMessage({
+          type: "info",
+          message: "Delete canceled",
+        });
+      });
   }
 }
 </script>
@@ -76,6 +112,7 @@ function deleteModule() {
         @open="resetData"
         :before-close="closeConfirm"
         destroy-on-close
+        align-center
       >
         <module-edit></module-edit>
       </el-dialog>
