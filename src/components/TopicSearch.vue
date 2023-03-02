@@ -1,16 +1,100 @@
 <script lang="ts" setup>
 import getTopicList from "@/api/getTopicList";
+import type topicType from "@/types/topicType";
+
+const temp: topicType[] = [];
+const data: Ref<topicType[]> = ref(temp);
 
 getTopicList().then((res) => {
-  console.log(res);
+  data.value = res;
 });
+
+const searchOption = reactive({
+  module: "",
+  founder: "",
+  topic: "",
+  date: [],
+});
+
+watch(
+  () => searchOption.date,
+  () => {
+    console.log(searchOption.date[0]);
+    console.log(searchOption.date[1]);
+  }
+);
 </script>
 
 <template>
   <div class="w-full h-full grid grid-cols-5 bg-green-300">
-    <div class="col-span-4 bg-red-300 flex justify-center items-center"></div>
+    <div class="col-span-4 bg-red-300 grid grid-cols-5 grid-flow-col">
+      <!-- module -->
+      <div class="col-span-1 flex justify-center items-center">
+        <el-select
+          v-model="searchOption.module"
+          placeholder="Select module"
+          class="w-full px-2 scale-y-125"
+        >
+          <el-option
+            v-for="item in data"
+            :key="data.indexOf(item)"
+            :label="item.title"
+            :value="item.title"
+          />
+        </el-select>
+      </div>
+
+      <!-- founder -->
+      <div class="col-span-1 flex justify-center items-center">
+        <el-select
+          v-model="searchOption.founder"
+          placeholder="Select module"
+          class="w-full px-2 scale-y-125"
+        >
+          <el-option
+            v-for="item in data"
+            :key="data.indexOf(item)"
+            :label="item.founder"
+            :value="item.founder"
+          />
+        </el-select>
+      </div>
+
+      <!--  date -->
+      <div class="col-span-2 flex justify-center items-center px-2">
+        <el-date-picker
+          v-model="searchOption.date"
+          type="datetimerange"
+          range-separator="To"
+          start-placeholder="Start date"
+          end-placeholder="End date"
+          value-format="YYYY MM DD"
+          class="w-full px-2 scale-y-125"
+        />
+      </div>
+
+      <!-- title -->
+      <div class="col-span-1 flex justify-center items-center px-2">
+        <el-input
+          v-model="searchOption.topic"
+          placeholder="input topic"
+          class="w-full px-2 scale-y-125"
+        />
+      </div>
+    </div>
+
     <div class="col-span-1 bg-purple-300 flex justify-center items-center">
       <el-button type="primary">Search</el-button>
     </div>
   </div>
 </template>
+
+<style lang="scss" scoped>
+.el-select .el-input {
+  border-radius: 10px !important;
+}
+
+:root {
+  --el-border-radius-base: 10px !important;
+}
+</style>
