@@ -44,6 +44,7 @@ declare module '@vue/runtime-core' {
     SearchTrend: typeof import('./../components/SearchTrend.vue')['default']
     SideBar: typeof import('./../components/SideBar.vue')['default']
     SiteSituation: typeof import('./../components/SiteSituation.vue')['default']
+    TopicManagement: typeof import('./../components/TopicManagement.vue')['default']
     VisualData: typeof import('./../components/VisualData.vue')['default']
   }
 }
