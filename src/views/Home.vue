@@ -29,6 +29,6 @@ import NavBar from "@/components/NavBar.vue";
 }
 
 .el-main {
-  overflow: hidden !important;
+  // overflow: hidden !important;
 }
 </style>
