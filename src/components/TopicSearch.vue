@@ -17,10 +17,9 @@ const searchOption = reactive({
 });
 
 watch(
-  () => searchOption.date,
+  () => [searchOption.module, searchOption.founder],
   () => {
-    console.log(searchOption.date[0]);
-    console.log(searchOption.date[1]);
+    console.log(searchOption);
   }
 );
 </script>
