@@ -15,13 +15,6 @@ const searchOption = reactive({
   topic: "",
   date: [],
 });
-
-watch(
-  () => [searchOption.module, searchOption.founder],
-  () => {
-    console.log(searchOption);
-  }
-);
 </script>
 
 <template>
