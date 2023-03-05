@@ -15,6 +15,13 @@ const searchOption = reactive({
   topic: "",
   date: [],
 });
+
+watch(
+  () => searchOption,
+  () => {
+    console.log(searchOption);
+  }
+);
 </script>
 
 <template>
