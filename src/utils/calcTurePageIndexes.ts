@@ -1,5 +1,6 @@
 function calcTurePageIndexes(newIndex: number, maxPageIndex: number) {
   if (newIndex === 1) newIndex = 2;
+  if (newIndex === maxPageIndex) newIndex--;
 
   const left = [newIndex - 3, newIndex - 2, newIndex - 1];
   const right = [newIndex + 1, newIndex + 2, newIndex + 3];
@@ -11,7 +12,7 @@ function calcTurePageIndexes(newIndex: number, maxPageIndex: number) {
     if (left[i] <= 1) {
       rightMore++;
     }
-    if (right[i] > maxPageIndex) {
+    if (right[i] >= maxPageIndex) {
       leftMore++;
     }
   }
