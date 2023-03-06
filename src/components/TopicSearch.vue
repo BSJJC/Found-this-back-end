@@ -7,6 +7,7 @@ const data: Ref<topicType[]> = ref(temp);
 
 getTopicList().then((res) => {
   data.value = res;
+  sessionStorage.setItem("topicItems", JSON.stringify(data.value));
 });
 
 const searchOption = reactive({
@@ -19,7 +20,7 @@ const searchOption = reactive({
 
 <template>
   <div class="w-full h-full grid grid-cols-5">
-    <div class="col-span-4 grid grid-cols-5 grid-flow-col p-2">
+    <div class="col-span-4 grid grid-cols-5 grid-flow-col p-3">
       <!-- module -->
       <div class="col-span-1 flex justify-center items-center">
         <el-select

@@ -9,7 +9,7 @@ import TopicTurePage from "./TopicTurePage.vue";
     <el-header>
       <topic-search></topic-search>
     </el-header>
-    <el-main class="bg-yellow-300">
+    <el-main>
       <topic-list></topic-list>
     </el-main>
     <el-footer class="bg-green-300">
