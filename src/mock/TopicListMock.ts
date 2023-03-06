@@ -2,7 +2,7 @@ import Mock from "mockjs";
 
 const getTopicList = Mock.mock("/mockApi/topicList", "get", () => {
   return Mock.mock({
-    "topics|200-400": [
+    "topics|100-150": [
       {
         "number|+1": 1,
         founder: "@name",
