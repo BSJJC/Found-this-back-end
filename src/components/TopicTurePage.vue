@@ -28,8 +28,6 @@ function turePage(newIndex: number) {
     turePageIndexes.value = calcTurePageIndexes(newIndex + 1, maxPageIndex);
   }
 }
-
-console.log(turePageIndexes.value.length / 2);
 </script>
 
 <template>
@@ -38,7 +36,7 @@ console.log(turePageIndexes.value.length / 2);
       <!-- left ture page -->
       <div class="flex flex-none w-[160px] justify-end items-center">
         <el-button
-          class="mx-1"
+          class="flex justify-center items-center mx-1"
           :disabled="showingPageIndex - 1 > 0 ? false : true"
           @click="turePage(showingPageIndex - 2)"
         >
@@ -54,7 +52,7 @@ console.log(turePageIndexes.value.length / 2);
           <transition name="ellipsis">
             <div
               class="text-right w-[20px]"
-              v-show="showingPageIndex - 4 > 1 ? true : false"
+              v-show="showingPageIndex - 4 > 1 && maxPageIndex > 9"
             >
               ...
             </div>
@@ -81,7 +79,7 @@ console.log(turePageIndexes.value.length / 2);
           <transition name="ellipsis">
             <div
               class="text-center w-[20px]"
-              v-show="showingPageIndex + 4 >= maxPageIndex ? false : true"
+              v-show="showingPageIndex + 4 < maxPageIndex && maxPageIndex > 9"
             >
               ...
             </div>
@@ -89,7 +87,7 @@ console.log(turePageIndexes.value.length / 2);
 
           <el-button
             class="flex justify-center items-center mx-1"
-            v-show="maxPageIndex !== 1 ? true : false"
+            v-show="maxPageIndex !== 1"
             @click="turePage(maxPageIndex - 1)"
             :type="showingPageIndex === maxPageIndex ? 'primary' : ''"
             >{{ maxPageIndex }}</el-button
@@ -97,56 +95,14 @@ console.log(turePageIndexes.value.length / 2);
         </div>
 
         <el-button
-          class="mx-1"
+          class="flex justify-center items-center mx-1"
+          :disabled="showingPageIndex + 1 > maxPageIndex"
           @click="turePage(showingPageIndex)"
-          :disabled="showingPageIndex + 1 > maxPageIndex ? true : false"
         >
           <IEpArrowRight />
         </el-button>
       </div>
     </div>
-
-    <!-- <el-button
-      class="mr-1"
-      :disabled="showingPageIndex - 1 > 0 ? false : true"
-      @click="showingPageIndex--"
-    >
-      <IEpArrowLeft />
-    </el-button>
-
-    <div class="mx-1">
-      <div
-        class="flex justify-center items-center w-16"
-        v-show="showingPageIndex - 5 > 0"
-      >
-        <el-button class="mx-1" @click="turePage(0)">1</el-button>
-        <div class="mx-1">...</div>
-      </div>
-    </div>
-
-    <div v-for="(i, index) in turePageIndexes" :key="index">
-      <el-button
-        class="mx-1"
-        :type="i === showingPageIndex ? 'primary' : ''"
-        @click="turePage(i - 1)"
-      >
-        {{ i }}
-      </el-button>
-    </div>
-
-    <div
-      class="mx-1 flex justify-center items-center"
-      v-show="showingPageIndex + 10 < maxPageIndex"
-    >
-      <div class="mx-1">...</div>
-      <el-button class="mx-1" @click="turePage(maxPageIndex - 1)">{{
-        maxPageIndex
-      }}</el-button>
-    </div>
-
-    <el-button class="ml-1" @click="showingPageIndex++">
-      <IEpArrowRight />
-    </el-button> -->
   </div>
 </template>
 
