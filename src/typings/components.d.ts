@@ -34,6 +34,7 @@ declare module '@vue/runtime-core' {
     IEpDocument: typeof import('~icons/ep/document')['default']
     IEpHomeFilled: typeof import('~icons/ep/home-filled')['default']
     IEpLeft: typeof import('~icons/ep/left')['default']
+    IEpRightLeft: typeof import('~icons/ep/right-left')['default']
     IEpSwitchButton: typeof import('~icons/ep/switch-button')['default']
     IEpUser: typeof import('~icons/ep/user')['default']
     ModuleAdd: typeof import('./../components/ModuleAdd.vue')['default']
