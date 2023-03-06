@@ -15,18 +15,11 @@ const searchOption = reactive({
   topic: "",
   date: [],
 });
-
-watch(
-  () => searchOption,
-  () => {
-    console.log(searchOption);
-  }
-);
 </script>
 
 <template>
-  <div class="w-full h-full grid grid-cols-5 bg-green-300">
-    <div class="col-span-4 bg-red-300 grid grid-cols-5 grid-flow-col">
+  <div class="w-full h-full grid grid-cols-5">
+    <div class="col-span-4 grid grid-cols-5 grid-flow-col p-2">
       <!-- module -->
       <div class="col-span-1 flex justify-center items-center">
         <el-select
@@ -82,18 +75,8 @@ watch(
       </div>
     </div>
 
-    <div class="col-span-1 bg-purple-300 flex justify-center items-center">
+    <div class="col-span-1 flex justify-center items-center">
       <el-button type="primary">Search</el-button>
     </div>
   </div>
 </template>
-
-<style lang="scss" scoped>
-.el-select .el-input {
-  border-radius: 10px !important;
-}
-
-:root {
-  --el-border-radius-base: 10px !important;
-}
-</style>

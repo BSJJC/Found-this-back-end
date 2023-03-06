@@ -6,7 +6,7 @@ import TopicTurePage from "./TopicTurePage.vue";
 
 <template>
   <el-container class="bg-white rounded-3xl box-with-shadow">
-    <el-header class="bg-red-300">
+    <el-header>
       <topic-search></topic-search>
     </el-header>
     <el-main class="bg-yellow-300">
