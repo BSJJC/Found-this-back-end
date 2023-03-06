@@ -1,10 +1,19 @@
 <script lang="ts" setup>
+import { useModuleTopic } from "@/stores/index";
+import { storeToRefs } from "pinia";
+
+const store = useModuleTopic();
+const { showingPageIndex } = storeToRefs(store);
+
 const allData = JSON.parse(sessionStorage.getItem("topicItems") as string);
 
 let data: any = [];
-let pageIndex = 1;
 
-for (let i = (pageIndex - 1) * 10; i < 13 * pageIndex; i++) {
+for (
+  let i = (showingPageIndex.value - 1) * 10;
+  i < 13 * showingPageIndex.value;
+  i++
+) {
   data.push(allData[i]);
 }
 </script>

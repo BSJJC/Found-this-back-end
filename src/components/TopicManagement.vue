@@ -12,7 +12,7 @@ import TopicTurePage from "./TopicTurePage.vue";
     <el-main>
       <topic-list></topic-list>
     </el-main>
-    <el-footer class="bg-green-300">
+    <el-footer>
       <topic-ture-page></topic-ture-page>
     </el-footer>
   </el-container>
