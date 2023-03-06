@@ -7,15 +7,28 @@ const { showingPageIndex } = storeToRefs(store);
 
 const allData = JSON.parse(sessionStorage.getItem("topicItems") as string);
 
-let data: any = [];
+let data: any = ref([]);
 
-for (
-  let i = (showingPageIndex.value - 1) * 10;
-  i < 13 * showingPageIndex.value;
-  i++
-) {
-  data.push(allData[i]);
+function initTopicList() {
+  data.value = [];
+
+  for (
+    let i = (showingPageIndex.value - 1) * 13;
+    i < 13 * showingPageIndex.value;
+    i++
+  ) {
+    data.value.push(allData[i]);
+  }
 }
+
+initTopicList();
+
+watch(
+  () => showingPageIndex.value,
+  () => {
+    initTopicList();
+  }
+);
 </script>
 
 <template>

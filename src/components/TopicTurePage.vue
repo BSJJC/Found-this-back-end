@@ -6,12 +6,25 @@ const store = useModuleTopic();
 const { showingPageIndex } = storeToRefs(store);
 
 const data = JSON.parse(sessionStorage.getItem("topicItems") as string);
+const temp: number[] = [];
+const turePageIndexes: Ref<number[]> = ref(temp);
 const maxPageIndex = Math.ceil(data.length / 13);
+
+maxPageIndex > 9
+  ? (turePageIndexes.value = [1, 2, 3, 4, 5, 6, 7, 8, 9])
+  : (turePageIndexes.value = (() => {
+      const arr = [];
+      for (let i = 0; i < maxPageIndex; i++) {
+        arr.push(i);
+      }
+      return arr;
+    })());
+
+function calcTurePageIndexes(newIndex: number) {}
 
 function turePage(newIndex: number) {
   showingPageIndex.value = newIndex + 1;
-
-  console.log(showingPageIndex.value);
+  calcTurePageIndexes(newIndex + 1);
 }
 </script>
 
@@ -25,9 +38,15 @@ function turePage(newIndex: number) {
       <IEpArrowLeft />
     </el-button>
 
-    <div class="mx-1" v-show="showingPageIndex - 5 > 0">...</div>
+    <div class="mx-1 flex jucen items-center" v-show="showingPageIndex - 5 > 0">
+      <el-button class="mx-1" @click="turePage(0)">1</el-button>
+      <div class="mx-1">...</div>
+    </div>
 
-    <div v-for="(i, index) in maxPageIndex > 9 ? 9 : maxPageIndex" :key="index">
+    <div
+      v-for="(i, index) in maxPageIndex > 9 ? 9 : maxPageIndex + 1"
+      :key="index"
+    >
       <el-button
         class="mx-1"
         :type="i === showingPageIndex ? 'primary' : ''"
@@ -37,7 +56,15 @@ function turePage(newIndex: number) {
       </el-button>
     </div>
 
-    <div class="mx-1" v-show="showingPageIndex + 10 < maxPageIndex">...</div>
+    <div
+      class="mx-1 flex justify-center items-center"
+      v-show="showingPageIndex + 10 < maxPageIndex"
+    >
+      <div class="mx-1">...</div>
+      <el-button class="mx-1" @click="turePage(maxPageIndex - 1)">{{
+        maxPageIndex
+      }}</el-button>
+    </div>
 
     <el-button class="ml-1" @click="showingPageIndex++">
       <IEpArrowRight />
