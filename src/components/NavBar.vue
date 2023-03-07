@@ -3,6 +3,7 @@ import getTime from "@/utils/getTime";
 import addPrefix from "@/utils/addPrefix";
 import copyObjectProp from "@/utils/copyObjectProp";
 import type timeType from "@/types/timeType";
+import { shutDownIcon } from "@/imgs/index";
 
 ///    init time
 const initTimestamp: string = new Date().getTime().toString();
@@ -90,7 +91,11 @@ setInterval(() => {
 
         <!-- log out button -->
         <div id="title" class="ml-4 flex items-center cursor-pointer">
-          <i-ep-SwitchButton />
+          <img
+            :src="shutDownIcon"
+            alt="shut down icon"
+            class="w-6 opacity-50"
+          />
         </div>
       </div>
     </div>

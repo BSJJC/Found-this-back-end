@@ -6,6 +6,7 @@ import moduleIcon from "./module.svg";
 import modulesIcon from "./modules.svg";
 import searchIcon from "./search.svg";
 import studioIcon from "./studio.svg";
+import shutDownIcon from "./shutDown.svg";
 import topicIcon from "./topic.svg";
 import usersIcon from "./users.svg";
 
@@ -18,6 +19,7 @@ export {
   modulesIcon,
   searchIcon,
   studioIcon,
+  shutDownIcon,
   topicIcon,
   usersIcon,
 };
