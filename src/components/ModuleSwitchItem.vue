@@ -3,9 +3,12 @@ import { storeToRefs } from "pinia";
 import { useModuleSwitch } from "@/stores/index";
 import { useRouter } from "vue-router";
 
+import { homeIcon, moduleIcon, topicIcon, usersIcon } from "@/imgs/index";
+
 const switchStore = useModuleSwitch();
 const { hoverIndex, selectedIndex, pages } = storeToRefs(switchStore);
 const _pages = pages;
+const icons = [homeIcon, moduleIcon, topicIcon, usersIcon];
 
 const router = useRouter();
 
@@ -40,7 +43,7 @@ function selectedIndexChange(newIndex: number, newPath: string) {
     <div
       class="grid-col-2 col-span-2 flex justify-end items-center pr-3 text-2xl"
     >
-      <i-ep-HomeFilled />
+      <img :src="icons[index]" :alt="icons[index].toString()" class="w-10" />
     </div>
     <div
       class="grid-col-4 col-span-4 w-full flex justify-start items-center text-xl"
