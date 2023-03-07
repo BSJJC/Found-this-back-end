@@ -26,7 +26,7 @@ const searchOption = reactive({
         <el-select
           v-model="searchOption.module"
           placeholder="Select module"
-          class="w-full px-2 scale-y-125"
+          class="w-full px-2"
         >
           <el-option
             v-for="item in data"
@@ -42,7 +42,7 @@ const searchOption = reactive({
         <el-select
           v-model="searchOption.founder"
           placeholder="Select module"
-          class="w-full px-2 scale-y-125"
+          class="w-full px-2"
         >
           <el-option
             v-for="item in data"
@@ -71,7 +71,7 @@ const searchOption = reactive({
         <el-input
           v-model="searchOption.topic"
           placeholder="input topic"
-          class="w-full px-2 scale-y-125"
+          class="w-full px-2"
         />
       </div>
     </div>
@@ -81,3 +81,7 @@ const searchOption = reactive({
     </div>
   </div>
 </template>
+
+<style lang="scss">
+
+</style>
