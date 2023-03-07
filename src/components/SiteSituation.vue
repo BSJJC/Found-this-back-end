@@ -1,9 +1,29 @@
 <script lang="ts" setup>
 import getSiteSituation from "@/api/getSiteSituation";
 import type siteSituationType from "@/types/siteSituationType";
+import {
+  usersIcon,
+  activityIcon,
+  studioIcon,
+  durationIcon,
+  modulesIcon,
+  topicIcon,
+  commentsIcon,
+  searchIcon,
+} from "@/imgs/index";
 
 const temp: siteSituationType[] = [];
 const data: Ref<siteSituationType[]> = ref(temp);
+const icons = [
+  usersIcon,
+  activityIcon,
+  studioIcon,
+  durationIcon,
+  modulesIcon,
+  topicIcon,
+  commentsIcon,
+  searchIcon,
+];
 
 getSiteSituation().then((res) => {
   data.value = res;
@@ -15,7 +35,7 @@ getSiteSituation().then((res) => {
     <div v-for="(i, index) in data ? data : 8" :key="index" class="card">
       <div class="card-inside">
         <div class="col-span-1 flex justify-center">
-          <IEpUser class="h-full w-2/6" />
+          <img :src="icons[index]" :alt="icons[index]" class="w-16" />
         </div>
         <div class="col-span-1 grid grid-rows-2">
           <div id="title" class="flex justify-center items-end text-xl">

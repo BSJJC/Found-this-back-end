@@ -1,7 +1,23 @@
+import activityIcon from "./activity.svg";
+import commentsIcon from "./comments.svg";
+import durationIcon from "./duration.svg";
 import homeIcon from "./home.svg";
-import userIcon from "./user.svg";
-import usersIcon from "./users.svg";
 import moduleIcon from "./module.svg";
+import modulesIcon from "./modules.svg";
+import searchIcon from "./search.svg";
+import studioIcon from "./studio.svg";
 import topicIcon from "./topic.svg";
+import usersIcon from "./users.svg";
 
-export { homeIcon, userIcon, usersIcon, moduleIcon, topicIcon };
+export {
+  activityIcon,
+  commentsIcon,
+  durationIcon,
+  homeIcon,
+  moduleIcon,
+  modulesIcon,
+  searchIcon,
+  studioIcon,
+  topicIcon,
+  usersIcon,
+};
