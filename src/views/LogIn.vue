@@ -76,43 +76,42 @@ const submitForm = async (formEl: FormInstance | undefined): Promise<void> => {
       ref="ruleFormRef"
       :rules="rules"
       :model="logInInfo"
-      class="flex-col-center w-4/12 px-3 py-10 bg-white box-with-shadow rounded-lg"
+      class="flex-col-center w-4/12 h-[500px] px-3 py-10 bg-white box-with-shadow rounded-lg"
     >
       <!-- title -->
       <el-form-item class="w-full">
-        <h1 class="w-full font-bold text-center text-3xl">
-          互联网+在线服务平台
+        <h1 class="w-full font-bold text-center text-[2rem]">
+          Internet + online service platform
         </h1>
       </el-form-item>
       <!-- phone number -->
-      <el-form-item class="w-full overflow-visible" prop="phoneNum">
+      <el-form-item class="w-full h-[60px] overflow-visible" prop="phoneNum">
         <el-input
           v-model="logInInfo.phoneNum"
           type="number"
-          placeholder="请输入电话号码"
+          placeholder="Pleace input phone number"
           autofocus="true"
           clearable
+          class="h-[40px]"
         />
       </el-form-item>
       <!-- password -->
-      <el-form-item class="w-full overflow-visible" prop="password">
+      <el-form-item class="w-full h-[60px] overflow-visible" prop="password">
         <el-input
           v-model="logInInfo.password"
-          placeholder="请输入密码"
+          placeholder="Pleace input password"
           type="password"
           clearable
+          class="h-[40px]"
         />
       </el-form-item>
 
       <el-divider direction="horizontal" />
 
       <!-- submit -->
-      <el-form-item class="w-full mb-0">
-        <el-button
-          @click="submitForm(ruleFormRef)"
-          class="w-full h-10 text-2xl"
-        >
-          登录
+      <el-form-item class="w-full h-[60px] mb-0">
+        <el-button @click="submitForm(ruleFormRef)" class="w-full h-full">
+          <div class="text-2xl">Log In</div>
         </el-button>
       </el-form-item>
     </el-form>
@@ -128,6 +127,13 @@ const submitForm = async (formEl: FormInstance | undefined): Promise<void> => {
 
 h1 {
   color: var(--font-color-primary);
+}
+
+.el-input {
+  font-size: 1.5rem !important;
+}
+.el-form-item__error {
+  font-size: 1.3rem !important;
 }
 
 ///    show form check error
