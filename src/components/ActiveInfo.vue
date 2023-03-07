@@ -11,9 +11,9 @@ getActiveInfo().then((res) => {
 </script>
 
 <template>
-  <div class="relateve w-full h-full pr-4">
+  <div class="w-full h-full pr-4">
     <div id="title" class="w-full text-center">活跃人员信息</div>
-    <el-table :data="data" stripe height="85%">
+    <el-table :data="data" stripe height="89%">
       <el-table-column prop="number" label="序号" sortable />
       <el-table-column prop="userName" label="用户名" sortable />
       <el-table-column prop="IP" label="登录IP" sortable />
