@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { storeToRefs } from "pinia";
-import getModuleList from "@/api/getModuleList";
+import getModuleList from "@/mockApi/getModuleList";
 import { useModuleListData } from "@/stores/index";
 
 const store = useModuleListData();

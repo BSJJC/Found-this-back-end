@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import getActiveInfo from "@/api/getActiveInfo";
+import getActiveInfo from "@/mockApi/getActiveInfo";
 import type activeInfoType from "@/types/activeInfoType";
 
 const temp: activeInfoType[] = [];

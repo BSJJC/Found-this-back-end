@@ -3,13 +3,13 @@ import { ref, reactive } from "vue";
 import type { FormInstance, FormRules } from "element-plus";
 import { useRouter } from "vue-router";
 import { ElMessage } from "element-plus";
-import { cnPhoneCheck } from "@/utils/phoneNumCheck";
+import { administratorLogin } from "@/api/administratorLogin";
 
 const router = useRouter();
 
 const logInInfo = reactive({
-  email: "",
-  password: "",
+  email: "Joe@gmail.com",
+  password: "password",
 });
 
 const ruleFormRef = ref<FormInstance>();
@@ -45,21 +45,52 @@ const rules = reactive<FormRules>({
   ],
 });
 
-const submitForm = async (formEl: FormInstance | undefined): Promise<void> => {
+const submitForm = async (formEl: FormInstance | undefined) => {
   if (!formEl) return;
-  await formEl.validate((valid, fields) => {
-    ///    Login success
+  await formEl.validate(async (valid, fields) => {
+    ///    Legal input
     if (valid) {
+      try {
+        let data = await administratorLogin(logInInfo);
+
+        const administratorId = data.data._id;
+        const TOKEN = data.data.token;
+
+        sessionStorage.setItem(
+          "administratorId",
+          JSON.stringify(administratorId)
+        );
+        sessionStorage.setItem("TOKEN", JSON.stringify(TOKEN));
+      } catch (err) {
+        //@ts-ignore
+        if (err.response) {
+          ElMessage({
+            //@ts-ignore
+            message: `opps, ${err.response.data.reason}`,
+            type: "error",
+          });
+          return;
+        }
+
+        ElMessage({
+          message: `opps, seems to be a connection problem`,
+          type: "error",
+        });
+        return;
+      }
+
       ElMessage({
         message: "Login successful",
         type: "success",
       });
+
       console.log("submit!");
+
       setTimeout(() => {
         router.push("/home/overView");
-      }, 500);
+      }, 1000);
     } else {
-      ///    Login failed
+      ///    Illegal input
       ElMessage({
         message: "opps,  seems to be an error logging in",
         type: "error",

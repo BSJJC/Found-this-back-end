@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import getTopicList from "@/api/getTopicList";
+import getTopicList from "@/mockApi/getTopicList";
 import type topicType from "@/types/topicType";
 
 const temp: topicType[] = [];

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import getSiteSituation from "@/api/getSiteSituation";
+import getSiteSituation from "@/mockApi/getSiteSituation";
 import type siteSituationType from "@/types/siteSituationType";
 import {
   usersIcon,
