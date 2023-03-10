@@ -8,32 +8,32 @@ import { cnPhoneCheck } from "@/utils/phoneNumCheck";
 const router = useRouter();
 
 const logInInfo = reactive({
-  phoneNum: "",
+  email: "",
   password: "",
 });
 
 const ruleFormRef = ref<FormInstance>();
 
-const phoneNumCheck = (rule: any, value: any, callback: any) => {
+const emailNumCheck = (rule: any, value: any, callback: any) => {
   if (!value) {
-    return callback(new Error("Please input the phone number"));
+    return callback(new Error("Please input email"));
   }
 
-  const flag = cnPhoneCheck(value);
+  const reg = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
 
-  if (flag) {
+  if (reg.test(value)) {
     callback();
   } else {
-    callback(new Error("Please input the correct phone number"));
+    callback(new Error("Pleace input the correct email"));
   }
 };
 
 const rules = reactive<FormRules>({
-  phoneNum: [
+  email: [
     {
       required: true,
       trigger: "blur",
-      validator: phoneNumCheck,
+      validator: emailNumCheck,
     },
   ],
   password: [
@@ -84,12 +84,12 @@ const submitForm = async (formEl: FormInstance | undefined): Promise<void> => {
           Internet + online service platform
         </h1>
       </el-form-item>
-      <!-- phone number -->
-      <el-form-item class="w-full h-[60px] overflow-visible" prop="phoneNum">
+      <!-- email -->
+      <el-form-item class="w-full h-[60px] overflow-visible" prop="email">
         <el-input
-          v-model="logInInfo.phoneNum"
-          type="number"
-          placeholder="Pleace input phone number"
+          v-model="logInInfo.email"
+          type="text"
+          placeholder="Pleace input email"
           autofocus="true"
           clearable
           class="h-[40px]"
