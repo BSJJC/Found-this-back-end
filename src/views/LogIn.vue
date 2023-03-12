@@ -47,6 +47,7 @@ const rules = reactive<FormRules>({
 
 const submitForm = async (formEl: FormInstance | undefined) => {
   if (!formEl) return;
+
   await formEl.validate(async (valid, fields) => {
     ///    Legal input
     if (valid) {
@@ -61,6 +62,17 @@ const submitForm = async (formEl: FormInstance | undefined) => {
           JSON.stringify(administratorId)
         );
         sessionStorage.setItem("TOKEN", JSON.stringify(TOKEN));
+
+        ElMessage({
+          message: "Login successful",
+          type: "success",
+        });
+
+        console.log("submit!");
+
+        setTimeout(() => {
+          router.push("/home/overView");
+        }, 1000);
       } catch (err) {
         //@ts-ignore
         if (err.response) {
@@ -78,21 +90,10 @@ const submitForm = async (formEl: FormInstance | undefined) => {
         });
         return;
       }
-
-      ElMessage({
-        message: "Login successful",
-        type: "success",
-      });
-
-      console.log("submit!");
-
-      setTimeout(() => {
-        router.push("/home/overView");
-      }, 1000);
     } else {
       ///    Illegal input
       ElMessage({
-        message: "opps,  seems to be an error logging in",
+        message: "opps,  seems to be an input error",
         type: "error",
       });
       console.log("error submit!", fields);
