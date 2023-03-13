@@ -4,6 +4,7 @@ import type { FormInstance, FormRules } from "element-plus";
 import { useRouter } from "vue-router";
 import { ElMessage } from "element-plus";
 import { administratorLogin } from "@/api/administratorLogin";
+import axios from "axios";
 
 const router = useRouter();
 
@@ -100,6 +101,27 @@ const submitForm = async (formEl: FormInstance | undefined) => {
     }
   });
 };
+
+const file = ref(null);
+
+const handleFileUpload = async () => {
+  let formData = new FormData();
+  //@ts-ignore
+  formData.append("avater", file.value.files[0]);
+
+  axios
+    .post("http://localhost:5000/api/administratorAvater/upload", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    })
+    .then(function () {
+      console.log("SUCCESS!!");
+    })
+    .catch(function () {
+      console.log("FAILURE!!");
+    });
+};
 </script>
 
 <template>
@@ -147,6 +169,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
         </el-button>
       </el-form-item>
     </el-form>
+    <input ref="file" @change="handleFileUpload" type="file" />
   </div>
 </template>
 
