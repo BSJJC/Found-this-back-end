@@ -115,8 +115,9 @@ const handleFileUpload = async () => {
         "Content-Type": "multipart/form-data",
       },
     })
-    .then(function () {
+    .then(function (data) {
       console.log("SUCCESS!!");
+      console.log(data.data);
     })
     .catch(function () {
       console.log("FAILURE!!");
