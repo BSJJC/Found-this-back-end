@@ -1,22 +1,32 @@
 <script lang="ts" setup>
 import { storeToRefs } from "pinia";
-import getModuleList from "@/mockApi/getModuleList";
+// mock data ↓
+// import getModuleList from "@/mockApi/getModuleList";
+import getModels from "@/api/getModels";
 import { useModuleListData } from "@/stores/index";
+import { ElMessage } from "element-plus";
 
 const store = useModuleListData();
-const { listData, selectedModuleIndexes, checkboxGroup } = storeToRefs(store);
+const { listData, selectedModuleIndexes, selectedModuleData, checkboxGroup } =
+  storeToRefs(store);
 
-getModuleList().then((res) => {
-  listData.value = res;
+try {
+  getModels().then((res) => {
+    listData.value = res.data;
 
-  // init checkboxGroup
-  for (let i = 0; i < listData.value.length; i++) {
-    checkboxGroup.value.push(false);
-  }
-});
+    // init checkboxGroup
+    for (let i = 0; i < listData.value.length; i++) {
+      checkboxGroup.value.push(false);
+    }
+  });
+} catch (err) {
+  ElMessage({ type: "error", message: "Something went wrong!" });
+  throw new Error("Something went wrong!");
+}
 
 function addToSelecteds(index: number) {
   selectedModuleIndexes.value.push(index);
+  selectedModuleData.value.push(listData.value[index]);
 }
 
 function removeFromSelecteds(index: number) {

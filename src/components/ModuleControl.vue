@@ -4,6 +4,7 @@ import ModuleEdit from "./ModuleEdit.vue";
 import ModuleAdd from "./ModuleAdd.vue";
 import { useModuleListData } from "@/stores/index";
 import { ElMessage, ElMessageBox } from "element-plus";
+import deleteModel from "@/api/deleteModel";
 
 const store = useModuleListData();
 const {
@@ -56,7 +57,7 @@ function closeConfirm(done: () => void) {
   }
 }
 
-function deleteModule() {
+function deleteModules() {
   if (selectedModuleIndexes.value.length === 0) {
     ElMessage({
       message: "Please check the modules to delete.",
@@ -72,17 +73,24 @@ function deleteModule() {
         type: "warning",
       }
     )
-      .then(() => {
+      .then(async () => {
+        const titles: string[] = [];
+
+        selectedModuleData.value.forEach((item) => {
+          titles.push(item.title);
+        });
+
+        await deleteModel(titles);
+
+        // Sort the array sequentially and delete from the back to the front when deleting to prevent animation errors
         selectedModuleIndexes.value = selectedModuleIndexes.value.sort(
           (a, b) => a - b
         );
-
         for (let i = selectedModuleIndexes.value.length; i--; i >= 0) {
           listData.value.splice(selectedModuleIndexes.value[i], 1);
           checkboxGroup.value.splice(selectedModuleIndexes.value[i], 1);
         }
         selectedModuleIndexes.value = [];
-
         ElMessage({
           type: "success",
           message: "Module deleted",
@@ -121,7 +129,7 @@ function deleteModule() {
 
       <i-ep-Delete
         class="mx-3 text-xl opacity-40 cursor-pointer"
-        @click="deleteModule"
+        @click="deleteModules"
       />
     </div>
     <div class="flex justify-center items-center pr-5">

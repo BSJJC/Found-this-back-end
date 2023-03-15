@@ -11,7 +11,7 @@ const errorHandler = () => true;
       <el-avatar
         class="cursor-pointer"
         :size="70"
-        src="https://api.yimian.xyz/img?type=head"
+        src="http://localhost:5000/api/administratorAvater/641128f008a8d42d758a715d"
         @error="errorHandler"
       >
         <img

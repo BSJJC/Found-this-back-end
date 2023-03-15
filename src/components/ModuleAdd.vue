@@ -3,9 +3,10 @@ import { storeToRefs } from "pinia";
 import { useModuleListData } from "@/stores/index";
 import type { FormInstance } from "element-plus";
 import { ElMessage, ElMessageBox } from "element-plus";
+import addModel from "@/api/addModel";
 
 const store = useModuleListData();
-const { showAddModule, listData } = storeToRefs(store);
+const { listData, showAddModule } = storeToRefs(store);
 
 const ruleFormRef = ref<FormInstance>();
 
@@ -35,8 +36,7 @@ function resetData() {
         message: "Data discarded",
       });
 
-      ruleForm.title = "";
-      ruleForm.intro = "";
+      clearRuleForm();
       console.log("all changes discarded");
     })
     .catch(() => {
@@ -48,15 +48,27 @@ function resetData() {
     });
 }
 
-function addData() {
-  listData.value.push(ruleForm);
+function clearRuleForm() {
+  ruleForm.title = "";
+  ruleForm.intro = "";
+}
 
-  ElMessage({
-    type: "success",
-    message: "Module added",
-  });
+async function addData() {
+  try {
+    await addModel(ruleForm);
 
-  showAddModule.value = false;
+    listData.value.push({ title: ruleForm.title, intro: ruleForm.intro });
+
+    ElMessage({ type: "success", message: "New model created!" });
+    showAddModule.value = false;
+
+    console.log("New model added!");
+    console.table(ruleForm);
+    clearRuleForm();
+  } catch (err) {
+    ElMessage({ type: "error", message: "Something went wrong!" });
+    clearRuleForm();
+  }
 }
 </script>
 
