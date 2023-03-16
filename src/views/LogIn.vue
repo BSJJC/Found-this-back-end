@@ -107,14 +107,10 @@ const file = ref(null);
 const handleFileUpload = async () => {
   let formData = new FormData();
   //@ts-ignore
-  formData.append("avater", file.value.files[0]);
+  formData.append("file", file.value.files[0]);
 
   axios
-    .post("http://localhost:5000/api/administratorAvater/upload", formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    })
+    .post("http://localhost:5000/api/appendix/upload", formData)
     .then(function (data) {
       console.log("SUCCESS!!");
       console.log(data.data);
@@ -123,6 +119,10 @@ const handleFileUpload = async () => {
       console.log("FAILURE!!");
     });
 };
+
+const getFile =async ()=>{
+ const response =await  axios.get("http://localhost:5000/api/appendix/64137b634ac19baee64db83a")
+}
 </script>
 
 <template>
@@ -171,6 +171,7 @@ const handleFileUpload = async () => {
       </el-form-item>
     </el-form>
     <input ref="file" @change="handleFileUpload" type="file" />
+    <el-button @click="getFile">get</el-button>
   </div>
 </template>
 
