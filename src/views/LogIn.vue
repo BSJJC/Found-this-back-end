@@ -58,10 +58,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
         const administratorId = data.data._id;
         const TOKEN = data.data.token;
 
-        sessionStorage.setItem(
-          "administratorId",
-          JSON.stringify(administratorId)
-        );
+        sessionStorage.setItem("administratorId", JSON.stringify(administratorId));
         sessionStorage.setItem("TOKEN", JSON.stringify(TOKEN));
 
         ElMessage({
@@ -120,9 +117,21 @@ const handleFileUpload = async () => {
     });
 };
 
-const getFile =async ()=>{
- const response =await  axios.get("http://localhost:5000/api/appendix/64137b634ac19baee64db83a")
-}
+const getFile = async () => {
+  const response = await axios.get(
+    "http://localhost:5000/api/appendix/64137b634ac19baee64db83a", {
+          responseType: 'blob'
+        }
+  );
+
+  console.log(response);
+  
+
+  const link = document.createElement("a");
+  link.href = `data:application/octet-stream;base64,${response.data}`
+  link.download = "file.docx";
+  link.click();
+};
 </script>
 
 <template>
@@ -189,6 +198,7 @@ h1 {
 .el-input {
   font-size: 1.5rem !important;
 }
+
 .el-form-item__error {
   font-size: 1.3rem !important;
 }
@@ -206,6 +216,7 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
 /* Firefox */
 input[type="number"] {
   -moz-appearance: textfield;
