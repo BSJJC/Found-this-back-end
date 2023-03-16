@@ -119,17 +119,14 @@ const handleFileUpload = async () => {
 
 const getFile = async () => {
   const response = await axios.get(
-    "http://localhost:5000/api/appendix/64137b634ac19baee64db83a", {
+    "http://localhost:5000/api/appendix/64139186ca57ff4ea3371a86", {
           responseType: 'blob'
         }
   );
 
-  console.log(response);
-  
-
   const link = document.createElement("a");
   link.href = `data:application/octet-stream;base64,${response.data}`
-  link.download = "file.docx";
+  link.download = "file.pptx";
   link.click();
 };
 </script>
