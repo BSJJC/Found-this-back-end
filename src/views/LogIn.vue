@@ -58,7 +58,10 @@ const submitForm = async (formEl: FormInstance | undefined) => {
         const administratorId = data.data._id;
         const TOKEN = data.data.token;
 
-        sessionStorage.setItem("administratorId", JSON.stringify(administratorId));
+        sessionStorage.setItem(
+          "administratorId",
+          JSON.stringify(administratorId)
+        );
         sessionStorage.setItem("TOKEN", JSON.stringify(TOKEN));
 
         ElMessage({
@@ -119,26 +122,15 @@ const handleFileUpload = async () => {
 
 const getFile = async () => {
   let response = await axios.get(
-    "http://localhost:5000/api/appendix/64139186ca57ff4ea3371a86", {
-          responseType: 'blob'
-        }
+    "http://localhost:5000/api/appendix/6415c6cafc60c6b296a5f8bf",
+    {
+      responseType: "blob",
+    }
   );
 
   let link = document.createElement("a");
-  link.href = `data:application/octet-stream;base64,${response.data}`
+  link.href = `data:application/octet-stream;base64,${response.data}`;
   link.download = "file.pptx";
-  link.click();
-
-
-  response = await axios.get(
-    "http://localhost:5000/api/appendix/64137b634ac19baee64db83a", {
-          responseType: 'blob'
-        }
-  );
-
-  link = document.createElement("a");
-  link.href = `data:application/octet-stream;base64,${response.data}`
-  link.download = "file.docx";
   link.click();
 };
 </script>
