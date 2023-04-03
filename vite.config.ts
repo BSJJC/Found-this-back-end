@@ -15,10 +15,12 @@ export default defineConfig({
       '@': pathSrc,
     },
   },
+
   plugins: [
     Vue({
       reactivityTransform: true,
     }),
+    
     AutoImport({
       imports: ['vue', '@vueuse/core'],
       dirs: [path.resolve(pathSrc, 'composables')],
