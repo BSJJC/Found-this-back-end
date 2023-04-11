@@ -101,53 +101,6 @@ const submitForm = async (formEl: FormInstance | undefined) => {
     }
   });
 };
-
-const file = ref(null);
-
-const handleFileUpload = async () => {
-  let formData = new FormData();
-  //@ts-ignore
-  formData.append("topicBackground", file.value.files[0]);
-
-  axios
-    .post("http://localhost:5000/api/topicBackground/upload", formData)
-    .then(function (data) {
-      console.log("SUCCESS!!");
-      console.log(data.data);
-    })
-    .catch(function () {
-      console.log("FAILURE!!");
-    });
-};
-
-const getFile = async () => {
-  let response = await axios.get(
-    "http://localhost:5000/api/appendix/6415c6cafc60c6b296a5f8bf",
-    {
-      responseType: "blob",
-    }
-  );
-
-  console.log(response.data);
-
-  let link = document.createElement("a");
-  link.href = `data:application/octet-stream;base64,${response.data}`;
-  link.download = "file.pptx";
-  link.click();
-};
-
-const test = ref("");
-const getFile2 = async () => {
-  let response = await axios.get(
-    "http://localhost:5000/api/topicBackground/64210b735c2b59e93fb6b18a",
-    {
-      responseType: "blob",
-    }
-  );
-
-  test.value = response.data;
-  console.log(test.value);
-};
 </script>
 
 <template>
@@ -195,10 +148,6 @@ const getFile2 = async () => {
         </el-button>
       </el-form-item>
     </el-form>
-    <input ref="file" @change="handleFileUpload" type="file" />
-    <el-button @click="getFile">get</el-button>
-    <el-button @click="getFile2">get2</el-button>
-    <img :src="test" alt="" />
   </div>
 </template>
 
